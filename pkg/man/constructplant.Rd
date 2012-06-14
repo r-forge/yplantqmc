@@ -16,7 +16,7 @@ Three plants are provided with \code{YplantQMC} (and automatically loaded) :\cod
 \code{pilularis} and \code{sugarmaple}. See \code{\link{plantexamples}}.
 }
 \usage{
-constructplant(pfile = NA, lfile = NA, qfile = NA, multiplier=1.0, 
+constructplant(pfile = NULL, lfile = NULL, qfile = NULL, multiplier=1.0, 
 X0 = 0, Y0 = 0, Z0 = 0, warn=FALSE)
 readplantlist(pfiles=NA, lfiles=NA, lpk=NA, multiplier=1)
 }
