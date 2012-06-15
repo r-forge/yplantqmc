@@ -16,6 +16,7 @@ Thanks to Daniel Falster and Bob Pearcy.
 
 \examples{
 
+\dontrun{
 # Small gap
 plot(smallgap)
 
@@ -23,6 +24,7 @@ plot(smallgap)
 southfrance <- setLocation(44)
 juneday <- setMet(southfrance, month=6, day=21)
 plot(largegap, juneday)
+}
 }
 
 \keyword{datasets}
