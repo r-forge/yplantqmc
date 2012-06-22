@@ -23,7 +23,8 @@ readplantlist <- function(pfiles=NA, lfiles=NA, lpk=NA, multiplier=1.0){
 	
 	plants <- list()
 	for(i in 1:length(pfiles)){
-		tm <- system.time(plants[[i]] <- try(constructplant(pfiles[i], lfiles[i],multiplier=multipliers[i]),silent=TRUE))
+		tm <- system.time(plants[[i]] <- try(constructplant(pfiles[i], lfiles[i], 
+			multiplier=multipliers[i]), silent=TRUE))
 		if(inherits(plants[[i]], "try-error")){
 			warning("Error constructing from ",pfiles[i],";",lfiles[i]," - plant skipped.")
 			nbad <- nbad + 1
