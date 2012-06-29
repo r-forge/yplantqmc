@@ -6,7 +6,7 @@
     packageStartupMessage(msg)
 	
 	if(.Platform$OS.type != "windows")
-		packageStartupMessage("-- You are not using a Windows machine - YplantDay and runYplant will not work.")
+		packageStartupMessage("-- You are not using a Windows machine - YplantDay() and runYplant() will not work.")
 	
 	if(!checkInstallation() & .Platform$OS.type == "windows"){
 		packageStartupMessage("!- To Install QuasiMC, type installQuasiMC().")

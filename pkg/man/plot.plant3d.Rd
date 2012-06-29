@@ -16,6 +16,7 @@ adds the convex hull to the plot.
 	leaffill=TRUE,
 	leafoutline=TRUE,
 	stems=TRUE,
+	cylinderstems=stems,
 	leafcolor="forestgreen",
 	markleaves=NULL,
 	markcolor="red",
@@ -44,6 +45,7 @@ adds the convex hull to the plot.
   \item{leaffill}{Logical. If TRUE, the default, fills in the leaves.}
   \item{leafoutline}{Logical. If TRUE, plots leaf outlines.}
   \item{stems}{Logical. If TRUE, plots the stems (black) and branches .}
+  \item{cylinderstems}{Logical. If TRUE, plots the stems as cylinder sections given the diameter in the plant file.}
   \item{leafcolor}{Color of the filled leaves. Can only specify one color.}
   \item{markleaves,markcolor}{A vector of leaf numbers to 'mark', using 'markcolor'.}
   \item{stemcol,branchcol,petiolecol}{Color of the stems, branches, petioles}

@@ -30,10 +30,9 @@ readl <- function(lfile=NA){
 	l$XYZ <- matrix(cbind(dfr[,1],dfr[,2],rep(0,nrow(dfr))), ncol=3)
 	colnames(l$XYZ) <- c("X","Y","Z")
 	
-	p1 <- 1
-	#p2 <- unname(which(l$XYZ[,1] == 0 & l$XYZ[,2] > 0))
 	
 	# Is there a point along the midrib?
+	p1 <- 1	# First point always on midrib by convention (0,0).
 	i <- 2:(nrow(l$XYZ)-1)  # do not look in first and last points (generally 0,0 both)
 	zerox <- l$XYZ[i,1] == 0 & l$XYZ[i,2] > 0
 	hasmidrib <- any(zerox)

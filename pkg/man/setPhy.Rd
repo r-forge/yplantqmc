@@ -1,6 +1,8 @@
 \name{setPhy}
 \alias{setPhy}
+\alias{includePhy.plant3d}
 \alias{includePhy}
+\alias{includePhy.plant3dlist}
 \title{
 Make a leaf physiology object
 }
@@ -15,14 +17,17 @@ non-rectangular light response curve (see \code{\link{lightresponse}}).
 }
 \usage{
 setPhy(leafmodel, leafpars = list())
-includePhy(plant, ...)
+
+\method{includePhy}{plant3d}(object, ...)
+\method{includePhy}{plant3dlist}(object, phydfr, ...)
 }
 \arguments{
   \item{leafmodel}{Name of the leaf gas exchange model ('Farquhar', or 'lightresponse', or user-defined).
 }
   \item{leafpars}{List of parameters that are passed to the leafmodel 
   (and should be arguments of that function).}
-\item{plant}{A 'plant3d' object (see \code{\link{constructplant}}).}
+\item{object}{A 'plant3d' object (see \code{\link{constructplant}}), or a 'plant3dlist' object.}
+\item{phydfr}{A dataframe with leaf parameters, for batch analyses (see Details).}
 \item{\dots}{Further arguments passed to 'setPhy'} 
 }
 \details{

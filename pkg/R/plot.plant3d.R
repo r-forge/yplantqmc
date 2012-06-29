@@ -7,6 +7,7 @@ plot.plant3d <- function(x,
 					  leaffill=TRUE,
 					  leafoutline=TRUE,
 					  stems=TRUE,
+					  cylinderstems=stems,
 					  leafcolor="forestgreen",
 					  markleaves=NULL,
 					  markcolor="red",
@@ -78,22 +79,27 @@ plot.plant3d <- function(x,
 	Nnodes <- nrow(plant$pdata)
 	
 	# Stem segments.
-	Ms <- list()
-	for(i in 1:Nnodes){
-		Ms[[i]] <- rbind(rbind(plant$stems[[i]]$xyz$from, plant$stems[[i]]$xyz$to))
+	if(stems){
+		Ms <- list()
+		for(i in 1:Nnodes){
+			Ms[[i]] <- rbind(rbind(plant$stems[[i]]$xyz$from, plant$stems[[i]]$xyz$to))
+		}
+		Ms <- do.call("rbind", Ms)
+		Ms <- shiftm(Ms,shiftxyz)
+		segments3d(Ms, col=stemcol)
+			
+		# Branches.
+		Ms <- list()
+		for(i in 1:Nnodes){
+			Ms[[i]] <- rbind(rbind(plant$branches[[i]]$xyz$from, plant$branches[[i]]$xyz$to))
+		}
+		Ms <- do.call("rbind", Ms)
+		Ms <- shiftm(Ms,shiftxyz)
+		segments3d(Ms, col=branchcol)
 	}
-	Ms <- do.call("rbind", Ms)
-	Ms <- shiftm(Ms,shiftxyz)
-	segments3d(Ms, col=stemcol)
-	
-	# Branches.
-	Ms <- list()
-	for(i in 1:Nnodes){
-		Ms[[i]] <- rbind(rbind(plant$branches[[i]]$xyz$from, plant$branches[[i]]$xyz$to))
-	}
-	Ms <- do.call("rbind", Ms)
-	Ms <- shiftm(Ms,shiftxyz)
-	segments3d(Ms, col=branchcol)
+	# Add cylinder sections.
+	if(stems & cylinderstems)plotstemsections(plant)
+
 	
 	# Petioles.
 	Ms <- list()

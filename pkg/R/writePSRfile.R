@@ -1,5 +1,5 @@
 
-writePSRfile <- function(yplantsim, ndigits=3){
+writePSRfile <- function(yplantsim, ndigits=6){
 
 	if(!inherits(yplantsim, "yplantsim"))
 		stop("Need object output by YplantDay.")
