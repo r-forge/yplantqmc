@@ -1,1 +1,2 @@
-0.12 First version hosted on Rforge.
+0.12	First version hosted on Rforge.
+0.13	Stem and branch sections are now plotted as cylinder sections in plot.plant3d. Other small bug changes.
