@@ -18,7 +18,7 @@ madeleafdirection <- function(mor,lor,lar){
     if(normal.z == 0){
       ld.e <- 0
       ld.n <- 0
-      ld. <- -1
+      ld.z <- -1
     } else {
       ld.e <- sin(mor)
       ld.n <- cos(mor)
