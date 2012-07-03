@@ -155,7 +155,8 @@ runYplant <- function(plant=NULL,
 	if(runphoto){
 		# Run photosynthesis module.
 		metvars <- list(PAR=PARs, Tair=Tair, Ca=Ca, VPD=VPD, Patm=Patm)
-		tm2 <- system.time(photorun <- do.call(phy$leaffunction, c(phy$leafpars, metvars)))
+		# tm2 <- system.time(
+		photorun <- do.call(phy$leaffunction, c(phy$leafpars, metvars))
 
 		# Run photosynthesis module for a flat unshaded leaf.
 		metvars <- list(PAR=PARinc, Tair=Tair, Ca=Ca, VPD=VPD, Patm=Patm)

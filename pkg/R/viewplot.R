@@ -3,7 +3,9 @@
 viewplot <- function(plant, side=c("east","south","above"), stems=TRUE, autopar=TRUE){
 
 	side <- tolower(side)
-
+	
+	if(plant$inputformat == "Q")stems <- FALSE
+	
 	addbranches <- function(i1, i2){
 		x <- plant
 		for(i in 1:length(x$stems)){

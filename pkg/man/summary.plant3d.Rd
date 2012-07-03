@@ -58,7 +58,7 @@ Note that when generating a summary on a \code{plant3dlist} object, the above in
 The outputfile is tab-delimited, and has the name 'Plant summaries-YYYY-MM-DD.txt', using the current date.
 
 The following functions are called to calculate some of the summary variables:
-\code{\link{leafdispersion}} for Ek,Ek2,Ok,disp,disp2; \code{\link{pathlen}} for meanpath,sdpath,totlen;
+\code{\link{leafdispersion}} for Ek,Ek2,Ok,disp,disp2; \code{pathlen} (hidden function) for meanpath,sdpath,totlen;
 the \code{\link{fitdistribution}} function in the \code{LeafAngle} package for Xellipsoid; \code{\link{getR}} for cw;
 and \code{\link{crownhull}} for crownsurf, crownvol and ALAC. The remainder of the variables are trivial calculations 
 from the plant input file (the .p file) or the leaf file. 

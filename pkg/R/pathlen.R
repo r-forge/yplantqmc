@@ -1,6 +1,6 @@
 
 pathlen <- function(plant, testleaf=NA, plotit=!is.na(testleaf), add=FALSE, 
-	returnwhat=c("totlen","seglist")){
+	returnwhat=c("totlen","seglist","pathdfr")){
 	
 	returnwhat <- match.arg(returnwhat)
 
@@ -25,6 +25,7 @@ pathlen <- function(plant, testleaf=NA, plotit=!is.na(testleaf), add=FALSE,
 	
 	nleaves <- p$nleaves
 	totlen <- sdlen <- c()
+	pathdfr <- list()
 	
 	# If 'testleaf' given, test the routine graphically.
 	testmode <- if(!is.na(testleaf)) TRUE else FALSE
@@ -37,6 +38,9 @@ pathlen <- function(plant, testleaf=NA, plotit=!is.na(testleaf), add=FALSE,
 
 	branchnodes <- sapply(p$branches, "[[", "node")
 	branchmothernodes <- sapply(p$branches, "[[", "mothernode")
+	
+	# stemnodes <- sapply(p$stems, "[[", "node")
+	# stemmothernodes <- sapply(p$stems, "[[", "mothernode")
 	
 	ste <- p$pdata$ste  # whether attached to a branch or stem node......
 
@@ -69,9 +73,25 @@ pathlen <- function(plant, testleaf=NA, plotit=!is.na(testleaf), add=FALSE,
 				N <- 1  # causes break out of loop.
 			} else {
 
-			seglist <- c(seglist, p$stems[thisb])
-			if(plotit)plotstem(plant, thisb)
-
+			# decide whether to choose a branch or stem segment 
+			# (Hint : choose the one that connects).
+			
+			if(length(seglist) == 0){
+				dst <- p$petioles[[thisb]]$xyz$from[3] - p$stems[[thisb]]$xyz$to[3]
+				dbr <- p$petioles[[thisb]]$xyz$from[3] - p$branches[[thisb]]$xyz$to[3]
+			} else {
+				dst <- seglist[[length(seglist)]]$xyz$from[3] - p$stems[[thisb]]$xyz$to[3]
+				dbr <- seglist[[length(seglist)]]$xyz$from[3] - p$branches[[thisb]]$xyz$to[3]
+			}
+			
+			if(dst < dbr){
+				seglist <- c(seglist, p$stems[thisb])
+				if(plotit)plotstem(plant, thisb)
+			} else {
+				seglist <- c(seglist, p$branches[thisb])
+				if(plotit)plotbranch(plant, thisb)
+			}
+			
 			}
 			if(curn == 1)break
 			
@@ -87,18 +107,19 @@ pathlen <- function(plant, testleaf=NA, plotit=!is.na(testleaf), add=FALSE,
 			sqrt((a[1] - b[1])^2 + (a[2] - b[2])^2 + (a[3] - b[3])^2)
 		}
 
+		lens <- diams <- zlow <- zhigh <- c()
 		for(k in 1:length(seglist)){
-			lens <- c()
-			diams <- c()
 			lens[k] <- seglen(seglist[[k]])
 			diams[k] <- seglist[[k]]$diam
+			zlow[k] <- seglist[[k]]$xyz$from[3]
+			zhigh[k] <- seglist[[k]]$xyz$to[3]
 			# --> save as list, to be used already in constructplant?
 			# or only when calling the hydraulics routine?
 		}
+		pathdfr[[i]] <- data.frame(node=N, len=lens, diam=diams, z1=zlow,z2=zhigh)
 		
 		# Total length (used in summary.plant3d)
 		totlen[i] <- sum(lens)
-		
 	} else {
 		totlen[i] <- NA
 	}
@@ -107,5 +128,6 @@ pathlen <- function(plant, testleaf=NA, plotit=!is.na(testleaf), add=FALSE,
 	
 if(returnwhat=="totlen")return(invisible(data.frame(totlen=totlen[theseleaves])))
 if(returnwhat=="seglist")return(invisible(seglist))
+if(returnwhat=="pathdfr")return(invisible(pathdfr))
 
 }

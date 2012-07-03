@@ -64,11 +64,12 @@ summary.plant3dlist <- function(object, writefile=FALSE, ...){
 		r <- c("Plant summary results  - produced with YplantQMC.\n", r)
 		r <- c(r, "\n\n\n")
 		writeLines(r, filen)
+		
 		options(warn=-1)
 		write.table(sumsdfr, filen, append=TRUE, sep="\t", quote=FALSE, row.names=FALSE)
 		options(warn=0)
 
-		message("\nSummary written to file: ", filen)
+		message("\nSummary written to file:\n ", filen)
 		
 		return(invisible(sumsdfr))
 	}

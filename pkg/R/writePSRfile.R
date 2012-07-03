@@ -15,7 +15,7 @@ writePSRfile <- function(yplantsim, ndigits=6){
 	r[1] <-  "Simulation summary for plant constructed from files:"
 	r[2] <-  paste("   P file:", pfile)
 	r[3] <-  paste("   L file:", lfile)
-	r[4] <- "----------------------------------------------------"
+	r[4] <- "----------------------------------------------------\n"
 	totAPAR <- sum(psr$PARleaf * psr$LAplant * psr$timestep) * 10^-6
 	totdifAPAR <- sum(psr$PARdiff * psr$LAplant * psr$timestep) * 10^-6
 	totdirAPAR <- sum(psr$PARdir * psr$LAplant * psr$timestep) * 10^-6
@@ -27,7 +27,7 @@ writePSRfile <- function(yplantsim, ndigits=6){
 	r[6] <- paste("Total absorbed PAR (APAR) (mol day-1)  :", round(totAPAR,3))
 	r[7] <- paste("Total Diffuse APAR        (mol day-1)  :", round(totdifAPAR,3))
 	r[8] <- paste("Total Direct APAR         (mol day-1)  :", round(totdirAPAR,3))
-	r[9] <- "----------------------------------------------------"
+	r[9] <- "----------------------------------------------------\n"
 	r[10] <- "Variables by timestep:"
 	r[11] <- "(Some may not be included)"
 	r[12] <- "timeofday   - Time of day (hours) of timestep."
