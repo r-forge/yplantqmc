@@ -72,7 +72,7 @@ adds the convex hull to the plot.
 \seealso{ \code{\link{crownhull}} }
 
 \examples{
-
+\dontrun{
 # Construct a plant like this:
 # myplant <- constructplant("somepfile.p","aleaf.l")
 
@@ -95,7 +95,6 @@ plot(toona, markleaves=which(toona$leafdata$ang > 45))
 # Plot the stems (and branches) only:
 plot(pilularis, noleaves=TRUE)
 
-\dontrun{
 # Plot many plants.
 # First organize a 'leafplantkey', a comma-separated file that links each pfile to an lfile.
 # See the online manual for an example, or the help file for 'constructplant'.
