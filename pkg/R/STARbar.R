@@ -14,7 +14,7 @@ STARbar.plant3d <- function(object, method=c("gridtracer","exact","QuasiMC","slo
 	integration <- match.arg(integration)
 
 	if(method %in% c("QuasiMC","slowquasimc") && .Platform$OS.type != "windows")
-		stop("Select different method: QuasiMC is only available in Windows")
+		stop("Select different method: QuasiMC is currently only available in Windows")
 	
 	if(quiet)progressbar <- FALSE
 	
@@ -62,7 +62,7 @@ STARbar.plant3d <- function(object, method=c("gridtracer","exact","QuasiMC","slo
 	if(method == "QuasiMC"){ 
 	
 		# 160 angles not yet supported (will perhaps be?)
-		if(integration=="Yplant")stop("QuasiMC with Yplant integration not implemented (too lazy).")
+		if(integration=="Yplant")stop("QuasiMC with Yplant integration not implemented.")
 
 		# Run QMC in UOC mode (with 'black' leaves).
 		qmcdapa <- runQMCUOC(plant, transmit=0, reflec=0,...)
@@ -75,6 +75,7 @@ STARbar.plant3d <- function(object, method=c("gridtracer","exact","QuasiMC","slo
 		pabar <- PA / LA
 		l <- list(STARbar = starbar, DAbar = DA, PAbar = PA, LA = LA, PALAbar = pabar)
 		l$ldr <- NA
+		l$sphericalSTAR <- sphericalSTAR
 	}
 	
 	
@@ -118,6 +119,7 @@ STARbar.plant3d <- function(object, method=c("gridtracer","exact","QuasiMC","slo
 		pabar <- PAbar / LA
 		l <- list(STARbar = starbar, DAbar = DAbar, PAbar = PAbar, LA = LA, PALAbar = pabar)
 		l$ldr <- ldr
+		l$sphericalSTAR <- sphericalSTAR
 	}
 	
 	if(method %in% c("exact","gridtracer")){

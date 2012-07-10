@@ -17,8 +17,12 @@ leafdata <- function(plant,...){
 		or <- plant$qdata$Or
 	}
 	
-	leafshape <- plant$ldata$leafshape
-	leafarea <- leaflen^2 * leafshape
+	# Find leaf shape (may vary by leaftype).
+	Lts <- plant$pdata$Lt[plant$pdata$Lt>0]
+	lsh <- c()
+	for(i in 1:length(Lts))lsh[i] <- plant$ldata[[Lts[i]]]$leafshape
+	
+	leafarea <- leaflen^2 * lsh
 
 	# Z coordinate of leaf base.
 	# f <- function(x)unname(x$XYZ[x$midribpoints[1],3])
@@ -27,7 +31,9 @@ leafdata <- function(plant,...){
 	
 return(data.frame(leafnr=1:length(leaflen), heightbase=heightbase,
 	len=leaflen, area=leafarea, 
-		ang=an, az=az, or=or,petilen=petiolelen))
+	ang=an, az=az, or=or,
+	petilen=petiolelen, 
+	leafshape=lsh))
 
 }
 

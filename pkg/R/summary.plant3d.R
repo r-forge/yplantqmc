@@ -59,7 +59,7 @@ summary.plant3d <- function(object, nKErepeat=10, nsignif=3, calcSTARbar=FALSE, 
     }
     
 	# Total leaf area:
-	LA <- 10^-6 * sum(plant$ldata$leafshape * L^2)
+	LA <- 10^-6 * sum(plant$leafdata$area)
 	meanleafsize <- 10^4 * LA / nleaves  # cm
 	leaflen <- 0.1 * mean(L)
 	

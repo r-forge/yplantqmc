@@ -46,7 +46,7 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 	# If leaf length is zero, make sure leaf type (Lt) = 0.
 	if(inputformat == "P")pdata$Lt[pdata$L.3 == 0] <- 0
 	
-	# Convert data to mm, if it is not already:
+	# Convert units (if needed).
 	if(multiplier != 1.0){
 			pdata$L <- multiplier * pdata$L
 			pdata$L.1 <- multiplier * pdata$L.1
@@ -67,16 +67,17 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 	if(is.null(lfile)){
 			if(.Platform$OS.type != "windows" || !interactive())
 				stop("Please specify a leaf file.")
-			
-			message("Using built-in triangle leaf.")
-			ldata <- structure(list(XYZ = structure(c(0, 5, 0, -5, 0, 0, 10, 0, 0, 
-				0, 0, 0), .Dim = c(4L, 3L), .Dimnames = list(NULL, c("X", "Y", 
-				"Z"))), midribpoints = c(1, 3), leafpars = structure(c(-999, 
-				-999, -999, -999, -999, NA), .Names = c("Rd", "QY", "shape", 
-				"absorp", "reflec", "")), leaftype = 1, nleaftypes = 1L, midriblen = 10, 
-					leafshape = 0.5), .Names = c("XYZ", "midribpoints", "leafpars", 
-				"leaftype", "nleaftypes", "midriblen", "leafshape"), class = "leaffile")
-			lfile <- "triangle"
+
+			# .... needs to be updated again (readl has changed).
+			# message("Using built-in triangle leaf.")
+			# ldata <- structure(list(XYZ = structure(c(0, 5, 0, -5, 0, 0, 10, 0, 0, 
+				# 0, 0, 0), .Dim = c(4L, 3L), .Dimnames = list(NULL, c("X", "Y", 
+				# "Z"))), midribpoints = c(1, 3), leafpars = structure(c(-999, 
+				# -999, -999, -999, -999, NA), .Names = c("Rd", "QY", "shape", 
+				# "absorp", "reflec", "")), leaftype = 1, nleaftypes = 1L, midriblen = 10, 
+					# leafshape = 0.5), .Names = c("XYZ", "midribpoints", "leafpars", 
+				# "leaftype", "nleaftypes", "midriblen", "leafshape"), class = "leaffile")
+			# lfile <- "triangle"
 			# lfile <- choose.files(caption="Select .L or .LF file")
 			# if(length(lfile) > 0)
 				# ldata <- readl(lfile[1])
@@ -184,7 +185,9 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 	
 	# Normalize ldata, so that 'length' (length of the midrib!) = 1
 	# ldata$XYZ <- ldata$XYZ / max(ldata$XYZ[,"Y"])
-	ldata$XYZ <- ldata$XYZ / ldata$midriblen
+	for(i in 1:length(ldata)){
+		ldata[[i]]$XYZ <- ldata[[i]]$XYZ / ldata[[i]]$midriblen
+	}
 	
 	# This list will store xyz coordinates of all leaf edges.
 	newleaves <- list()
@@ -244,7 +247,15 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 		ld <- mds[[i]]$ld
 		wd <- mds[[i]]$wd
 		
-		leafxy <- ldata$XYZ[,1:2]
+		# find leaftype (Only supported for P files at the moment).
+		if(inputformat == "P")
+			leaft <- pdatL$Lt[i]
+		else
+			leaft <- 1
+		
+		ldatcur <- ldata[[leaft]]
+		
+		leafxy <- ldatcur$XYZ[,1:2]
 		npoints <- nrow(leafxy)	
 		X <- Y <- Z <- c()
 	
@@ -258,13 +269,13 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 			Z[j] <- (tw*wd[3] + tl*ld[3]) * LEN[i] + leafbasecoor[[i]][3]
 
 		}
-		newleaves[[i]] <- ldata
+		newleaves[[i]] <- ldatcur
 		newleaves[[i]]$XYZ <- cbind(X,Y,Z)
 		newleaves[[i]]$leafnodenumber <- ifelse(inputformat == "P", leafnodenumber[[i]], NA)
 		newleaves[[i]]$leafnormal <- getleafnormal(newleaves[[i]])
 		
 	}
-	} # if(nleaves > 0)
+	} #END if(nleaves > 0)
 	
 	
 	l <- list()

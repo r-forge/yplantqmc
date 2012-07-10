@@ -1,2 +1,3 @@
 0.12	First version hosted on Rforge.
 0.13	Stem and branch sections are now plotted as cylinder sections in plot.plant3d. Other small bug changes.
+0.2-1	Multiple leaf types now supported.

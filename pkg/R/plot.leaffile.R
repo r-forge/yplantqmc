@@ -1,5 +1,5 @@
-plot.leaffile <- function(x, edgepoints=TRUE, edgecex=0.8, ...){
-	xyz <- x$XYZ
+plot.leaffile <- function(x, nleaf=1, edgepoints=TRUE, edgecex=0.8, ...){
+	xyz <- x$XYZ[[nleaf]]
 	leaflen <- max(xyz[,"Y"]) - min(xyz[,"Y"])
 	leafwid <- max(xyz[,"X"]) - min(xyz[,"X"])
 	span <- max(leaflen, leafwid)

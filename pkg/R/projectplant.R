@@ -19,8 +19,9 @@ projectplant <- function(plant, azimuth, altitude){
 	N <- length(oldleaves)
 	p <- makeviewplane(azimuth,altitude)
 
-	nleafpoints <- nrow(oldleaves[[1]]$XYZ)
-
+	# nleafpoints <- nrow(oldleaves[[1]]$XYZ)
+	nleafpoints <- sapply(plant$leaves, function(x)nrow(x$XYZ))
+	
 	xyzs <- do.call("rbind",lapply(oldleaves, function(x)x$XYZ))
 
 	# Get coordinates in viewing plane, using cross-products between current
@@ -45,8 +46,13 @@ projectplant <- function(plant, azimuth, altitude){
 	newxyzs <- cbind(vx,vy,vv)
 	colnames(newxyzs) <- c("VX","VY","VZ")
 	newleaves <- vector("list",N)
-	for(i in 1:N){
-		newleaves[[i]]$XYZ <- newxyzs[(1+(i-1)*nleafpoints):(i*nleafpoints) ,]
+	
+	fromi <- cumsum(c(1,nleafpoints[-length(nleafpoints)]))
+	toi <- cumsum(nleafpoints)
+	
+	for(i in 1:N){                           
+		newleaves[[i]]$XYZ <- newxyzs[fromi[i]:toi[i],]
+		#newxyzs[(1+(i-1)*nleafpoints[i]):(i*nleafpoints[i]) ,]
 		newleaves[[i]]$midribpoints <- plant$leaves[[i]]$midribpoints
 	}
 
