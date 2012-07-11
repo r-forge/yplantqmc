@@ -41,21 +41,21 @@ makereport <- function(plant=NULL, phy=NULL, met=NULL, hemi=NULL, ypsim=NULL, fi
 	# PLANT
 	if(!is.null(plant)){
 	
-		# Page 1.
+		# Page 1. Print plant object.
 		par(mfrow=c(2,2), mar=c(5,5,2,2), cex.axis=0.7)
 		textplot(capture.output(print(plant,hint=FALSE)), halign="right", cex=0.9)
 		viewplot(plant)
 		
-		# Page 2.
+		# Page 2. Leaf plot.
 		par(mfrow=c(1,1), xaxs="r", yaxs="r", cex.axis=0.9)
 		plot(plant$ldata)
 		title("Leaf")
 		
-		# Page 3.
+		# Page 3. Plant summary.
 		textplot(capture.output(summary(plant)), halign="left", cex=0.8)
 		title("Plant summary", line=1)
 	
-		# Page 4.
+		# Page 4. Leaf angle distribution.
 		ang <- plant$leafdata$ang
 		f <- fitdistribution(ang, "twoparbeta")
 		par(yaxs="r", xaxs="r")

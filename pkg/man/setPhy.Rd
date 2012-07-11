@@ -46,7 +46,18 @@ To find out whether a plant has a physiology object saved in it, simply type:
 	myplant$phy
 }
 If there is a physiology object, it will print a summary of its contents, otherwise it is \code{NULL}.
+
+For batch analyses, \code{includePhy} can set the leaf parameters for a list of plants (as constructed with 
+\code{\link{readplantlist}}). To do this, construct a dataframe where each row corresponds to a set of parameters
+for a plant, and the columns include \code{pfile} (required, to match the parameters to the plants in the list),
+\code{leafmodel} (required, the name of the leaf model), and further any parameters that can be accepted by the leafmodel 
+(for example, \code{Vcmax} or \code{Amax}, and so on). Then use this command,
+\preformatted{
+	myplantlist <- includePhy(myplantlist, leafpardataframe)
 }
+
+}
+
 \value{
 An object of class 'ypphy'.
 }
