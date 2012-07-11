@@ -39,6 +39,9 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 			if(is.data.frame(qfile) && ncol(qfile) == 7)qdata <- qfile
 			
 		names(qdata) <- c("X","Y","Z","An.3","Az.3","Or","L.3")
+		
+		# For now, only one leaf type allowed...
+		qdata$Lt <- 1
 		inputformat <- "Q"
 		#stems <- FALSE
 	}
@@ -47,7 +50,7 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 	if(inputformat == "P")pdata$Lt[pdata$L.3 == 0] <- 0
 	
 	# Convert units (if needed).
-	if(multiplier != 1.0){
+	if(multiplier != 1.0 && inputformat == "P"){
 			pdata$L <- multiplier * pdata$L
 			pdata$L.1 <- multiplier * pdata$L.1
 			pdata$L.2 <- multiplier * pdata$L.2

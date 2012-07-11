@@ -8,12 +8,11 @@ Plots a Yplant leaf file (a file with extension \code{.l} or \code{.lf}) in 2D.
 Produces a plot of a Yplant leaf file, read in using \code{\link{readl}}.
 }
 \usage{
-\method{plot}{leaffile}(x, edgepoints = TRUE, edgecex = 0.8, \dots)
+\method{plot}{leaffile}(x, nleaf=1, edgepoints = TRUE, edgecex = 0.8, \dots)
 }
 \arguments{
-  \item{x}{
-Object of class 'leaffile'.
-  }
+  \item{x}{Object of class 'leaffile'.}
+  \item{nleaf}{Which leaf to plot in the leaf file (if more than one leaf available in the file).}
   \item{edgepoints}{Logical. If TRUE, plots dots on the leaf edge coordinates.}
   \item{edgecex}{If edgepoint=TRUE, cex (i.e. size) of the leaf edge dots.}
   \item{\dots}{
