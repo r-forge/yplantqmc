@@ -2,3 +2,5 @@
 0.13	Stem and branch sections are now plotted as cylinder sections in plot.plant3d. Other small bug changes.
 0.2-1	Multiple leaf types now supported.
 0.2-2	Fixed bug with Q files
+0.2-3	Bug fixes related to multiple leaf types.
+0.2-4	Bug fix in DAPA.R

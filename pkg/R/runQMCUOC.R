@@ -19,8 +19,8 @@ runQMCUOC <- function(plant, hemi=NULL, reflec=NULL, transmit=NULL,
 			
 		# Turtle diffuse sky (uniformly distributed points on the sky hemisphere).
 		writeturtlediffuse(hemi)
-		# diffile <- "turtlediffuse.dat"
-		diffile <- "sky_uniform.dat"
+		diffile <- "turtlediffuse.dat"
+		# diffile <- "sky_uniform.dat"
 		
 		# Config file for QuasiMC
 		writecfg(cfgfile="autoquasimc.cfg", 

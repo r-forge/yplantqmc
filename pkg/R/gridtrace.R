@@ -27,6 +27,23 @@ gridtrace <- function(obj, npside=100, returnall=TRUE){
 	Px <- sapply(obj$leaves, function(x)x$XYZ[,1])
 	Py <- sapply(obj$leaves, function(x)x$XYZ[,2])
 	Pz <- sapply(obj$leaves, function(x)x$XYZ[,3])
+		
+	# Multiple leaf types: kluge to fix uneven number of points per leaf.
+	npoints <- sapply(obj$leaves, function(x)nrow(x$XYZ))
+	if(length(unique(npoints)) > 1){	
+		maxp <- max(npoints)
+		shorter <- which(npoints < maxp)
+		for(j in shorter){
+			n <- npoints[j]
+			Px[[j]] <- c(Px[[j]], rep(Px[[j]][n], maxp-n))
+			Py[[j]] <- c(Py[[j]], rep(Py[[j]][n], maxp-n))
+			Pz[[j]] <- c(Pz[[j]], rep(Pz[[j]][n], maxp-n))
+		}
+		Px <- do.call(cbind, Px)
+		Py <- do.call(cbind, Py)
+		Pz <- do.call(cbind, Pz)
+	}
+		
 	
 	griddfr <- expand.grid(X=seq(bounds$minx, bounds$maxx, by=gridpointwidth),
 							Y=seq(bounds$miny, bounds$maxy, by=gridpointwidth) )
