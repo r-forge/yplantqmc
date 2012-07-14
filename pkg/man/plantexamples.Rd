@@ -18,6 +18,7 @@ Plants provided by Jeff Kelly and Kerrie Sendall.
 
 \examples{
 
+\dontrun{
 # A sugar maple (Acer saccharum)
 plot(sugarmaple)
 
@@ -26,6 +27,7 @@ plot(pilularis)
 
 # Australian red cedar (Toona australis)
 plot(toona)
+}
 
 }
 \keyword{datasets}
