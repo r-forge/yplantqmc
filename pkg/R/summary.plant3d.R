@@ -71,7 +71,15 @@ summary.plant3d <- function(object, nKErepeat=10, nsignif=3, calcSTARbar=FALSE, 
 		stemvol <- 10^-9 * with(pdata, sum((D/2)^2 * pi *L) + sum((D.2/2)^2 * pi * L.2))
 		stembasediam <- pdata$D[1]
 		if(stembasediam == 0)stembasediam <- pdata$D[2]
-		path <- if(nleaves >0)pathlen(plant) else NA
+		if(nleaves >0){
+			path <- try(pathlen(plant), silent=TRUE)
+			if(inherits(path, "try-error")){
+				path <- data.frame(totlen=NA)
+				warning("Could not calculate path length for ",plant$pfile)
+			}
+		} else { 
+			path <- data.frame(totlen=NA)
+		}
 		meanpath <- mean(path$totlen,na.rm=TRUE)
 		sdpath <- sd(path$totlen,na.rm=TRUE)
 		totlen <- sum(pdata$L) + sum(pdata$L.1)

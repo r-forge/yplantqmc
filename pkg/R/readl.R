@@ -21,12 +21,12 @@ readl <- function(lfile=NA){
 	leaves <- list()
 	for(i in 1:nleaftypes){
 		
-		dfr <- try(read.table(lfile, skip=leafloc[i]+1, nrows=npoints[i]))
+		dfr <- try(read.table(lfile, skip=leafloc[i]+1, nrows=npoints[i]), silent=TRUE)
 		
 		if(inherits(dfr, "try-error") && grepl("did not have 2",dfr)){
 			k <- 1
 			while(inherits(dfr, "try-error")){
-				dfr <- try(read.table(lfile, skip=leafloc[i]+1, nrows=npoints[i]-k))
+				dfr <- try(read.table(lfile, skip=leafloc[i]+1, nrows=npoints[i]-k), silent=TRUE)
 				k <- k + 1
 			}
 			warning("Number of points in",lfile,"does not match - read in first",nrow(dfr),"points.")

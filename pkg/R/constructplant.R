@@ -66,6 +66,9 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 	# If file name given , read it:
 	if(is.character(lfile))ldata <- readl(lfile)
 	
+	# If a leaf object is given, use that.
+	if(inherits(lfile, "leaffile"))ldata <- lfile
+	
 	# Leaf data
 	if(is.null(lfile)){
 			if(.Platform$OS.type != "windows" || !interactive())
@@ -188,8 +191,9 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 	
 	# Normalize ldata, so that 'length' (length of the midrib!) = 1
 	# ldata$XYZ <- ldata$XYZ / max(ldata$XYZ[,"Y"])
+	ldata_scaled <- ldata
 	for(i in 1:length(ldata)){
-		ldata[[i]]$XYZ <- ldata[[i]]$XYZ / ldata[[i]]$midriblen
+		ldata_scaled[[i]]$XYZ <- ldata[[i]]$XYZ / ldata[[i]]$midriblen
 	}
 	
 	# This list will store xyz coordinates of all leaf edges.
@@ -256,7 +260,7 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 		else
 			leaft <- 1
 		
-		ldatcur <- ldata[[leaft]]
+		ldatcur <- ldata_scaled[[leaft]]
 		
 		leafxy <- ldatcur$XYZ[,1:2]
 		npoints <- nrow(leafxy)	

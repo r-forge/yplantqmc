@@ -40,7 +40,10 @@ STARbar.plant3d <- function(object, method=c("gridtracer","exact","QuasiMC","slo
 		quiet <- TRUE
 		integration <- "Turtlesky"  # because STARbar is then simply average of specified angles.
 		sphericalSTAR <- FALSE
-		message("Calculating STAR for pre-specified angles.")
+		if(method=="QuasiMC")
+			stop("Cannot use QuasiMC to calculate STAR for pre-defined angles (yet).")
+		
+		if(!quiet)message("Calculating STAR for pre-specified angles.")
 	}
 
 	# Total plant leaf area.

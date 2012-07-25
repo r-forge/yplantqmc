@@ -33,7 +33,7 @@ calculations from many viewing angles to estimate the \eqn{\overline{STAR}}.
   \item{returnldr}{If TRUE, returns a dataframe with results per viewing angle.}
   \item{quiet}{If TRUE, prints no progress to the screen.}
   \item{silhouette}{If TRUE, also calculates the 2D convex hull around the projected plant (see \code{\link{Silhouette}}).}
-  \item{azimuth, altitude}{Azimuth and altitude of the viewing direction.}
+  \item{azimuth, altitude}{Azimuth and altitude of the viewing direction (Optional, in Radians).}
   \item{\dots}{Further arguments are ignored, for now.}
 }
 \details{

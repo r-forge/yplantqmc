@@ -124,7 +124,7 @@ plot.plant3d <- function(x,
 		}
 		LM <- do.call("rbind", LM)
 		LM <- shiftm(LM,shiftxyz)
-		segments3d(LM)
+		segments3d(LM, col="black")
 	}
 	
 	# Fill in leaves.
