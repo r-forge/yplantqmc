@@ -113,11 +113,16 @@ summary.plant3d <- function(object, nKErepeat=10, nsignif=3, calcSTARbar=FALSE, 
 		STARbar_est <- run$DAbar / run$LA
 	} else STARbar_est <- NA
 	
-	obj <- list(plant$pfile, plant$lfile, crownvol,crownsurf,nleaves,leaflen,
+	# (convex) crown projected area.
+	AP <- 10^-6 * Silhouette(plant,azimuth=0,altitude=90)$H
+	
+	LFILE <- if(is.character(plant$lfile))plant$lfile else "unknown"
+	
+	obj <- list(plant$pfile, LFILE, crownvol,crownsurf,AP,nleaves,leaflen,
 		meanang,wmeanang,X,Ek,Ek2,Ok,disp,disp2,
 		stemsurf,stemvol,stembasediam,meanpath,
 		sdpath,totlen,cw,cl,htot,cshape,LA,meanleafsize,STARbar_est)
-	names(obj) <- c("pfile","lfile","crownvol","crownsurf","nleavesp","leaflen",
+	names(obj) <- c("pfile","lfile","crownvol","crownsurf","crownproj","nleavesp","leaflen",
 		"meanleafang","wmeanleafang",
 		"Xellipsoid","Ek","Ek2","Ok","disp","disp2",
 		"stemsurf","stemvol","stemdiam","meanpath","sdpath","totlen",

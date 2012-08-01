@@ -1,4 +1,4 @@
-STARbar <- function(object,...){
+	STARbar <- function(object,...){
 
 	UseMethod("STARbar")
 }

@@ -7,7 +7,7 @@
 \title{Calculate displayed and projected leaf areas of a 3D plant}
 \description{From a 3D plant, calculates the area of all leaves facing the viewing angle (from a given azimuth and
 altitude), or 'projected area', and the area of the leaves that is visible ('displayed area'). By default, repeats 
-calculations from many viewing angles to estimate the \eqn{\overline{STAR}}. 
+calculations from many viewing angles to estimate the hemi-spherically averaged STAR, or \eqn{\overline{STAR}}. 
 }
 \usage{
 \method{STARbar}{plant3d}(object, 

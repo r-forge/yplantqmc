@@ -13,6 +13,7 @@ print.summary.plant3d <- function(x, ...){
 	cat("                           Crown density (AL/AC) (m2 m-2) =", signif(x$LA / x$crownsurf, digits=x$nsignif),"\n")
 	cat("                                          Crown width (m) =", signif(x$cw,digits=x$nsignif), "\n")
 	cat("                                         Crown length (m) =", signif(x$cl,digits=x$nsignif), "\n")
+	cat("               Crown projected area (2D convex hull) (m2) =", signif(x$crownproj,digits=x$nsignif), "\n")
 	cat("                                          Total height(m) =", signif(x$htot,digits=x$nsignif), "\n")
 	cat("                                    Crown shape index (-) =", signif(x$cshape,digits=x$nsignif), "\n")
 	cat("\n")

@@ -4,4 +4,5 @@
 0.2-2	Fixed bug with Q files
 0.2-3	Bug fixes related to multiple leaf types.
 0.2-4	Bug fix in DAPA.R
-0.2-5	Minor improvements to constructplant() and readl(). (Rare) bug with pathlen() is now safe (but not fixed).
+0.2-5	Minor improvements to constructplant() and readl(). (Rare) bug (?) with pathlen() is now safe (but not fixed).
+0.2-6	Crown projected area added to summary.plant3d(). 
