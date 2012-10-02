@@ -2,7 +2,8 @@ useDynLib("YplantQMC")
 export(constructplant,changeinternodes,xmastime,crownhull,Farquhar,getangles,getR,
 includePhy,installQuasiMC,leafdispersion,lightresponse,modifypfile,psrdata,readl,readp,
 readplantlist,projectplant,replaceangles,runYplant,setMet,setLocation,setPhy,
-setHemi, evalHemi,Silhouette,STARbar,YplantDay,viewplot,makereport,plot.yphemi)
+setHemi, evalHemi,Silhouette,STARbar,YplantDay,viewplot,makereport,plot.yphemi,
+randomplant)
 S3method(plot, leaffile)
 S3method(plot, plant3d)
 S3method(plot, plant3dlist)
