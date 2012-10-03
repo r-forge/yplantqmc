@@ -36,7 +36,7 @@ quiet = FALSE)
 
 Six crown shapes are implemented, use one of the following abbreviations for the argument \code{crownshape}:
 \describe{
-\item{BOX}{A box shape; radius in X and Y directions must be the same.}
+\item{BOX}{A box shape; radius in X and Y directions assumed to be the same.}
 \item{CONE}{A cone shape.}
 \item{HELIP}{A half ellipsoid (the top half of a full ellipsoid).}
 \item{PARA}{A paraboloid.}
@@ -66,7 +66,7 @@ Belinda Medlyn for SURFACE subroutine in MAESTRA, used here.
 }
 \note{
 Currently only random distributions are supported. I have at this time no idea how to produce
-clumped or uniform distributions in 3D.
+clumped or uniform distributions in 3D (if you do, let me know).
 }
 
 \seealso{
@@ -81,7 +81,7 @@ leaflen=40, LA=1.5, LAunits="m2",writefile=TRUE)
 
 # Embed the function in a call to 'constructplant', giving a plant in the 
 # YplantQMC format.
-# Because no lfile is specified, it uses a built-in triangle-shaped leaf.
+# Because no leaf file is specified, it uses a built-in triangle-shaped leaf.
 coneplant <- constructplant(randomplant(radius=250, height=500, shape="CONE",
 leaflen=100, nleaves=20))
 
