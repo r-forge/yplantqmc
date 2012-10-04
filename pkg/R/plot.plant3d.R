@@ -24,6 +24,11 @@ plot.plant3d <- function(x,
 		leafoutline <- FALSE
 	}
 	
+  if(cylinderstems && !identical(shiftxyz, c(0,0,0))){
+    warning("This is a bug: cannot draw cylinder stems when shifting the plant from the origin.")
+    cylinderstems <- FALSE
+  }
+  
 	# r <- require(rgl, quietly=TRUE)				  
 	# if(!r)stop("Need to install package 'rgl'")
 	
