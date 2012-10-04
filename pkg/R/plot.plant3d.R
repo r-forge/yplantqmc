@@ -1,5 +1,4 @@
 plot.plant3d <- function(x,
-					  #zheight=0.1,     	 # minimum height of plotting canvas, in m.
 					  noleaves=FALSE,    # suppress leaf plotting.
 					  squarewidth=250,
 					  addcrownhull=FALSE,
