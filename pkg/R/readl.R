@@ -1,10 +1,10 @@
 readl <- function(lfile=NA){
 
 
-	options(warn=-1)
+  options(warn=-1)
 
-	if(is.na(lfile)){
-		if(.Platform$OS.type != "windows" || !interactive())
+  if(is.na(lfile)){
+    if(.Platform$OS.type != "windows" || !interactive())
 			stop("Please provide a leaf (.L or .LF) file")
 		lfile <- file.choose()
 	}
@@ -21,8 +21,13 @@ readl <- function(lfile=NA){
 	leaves <- list()
 	for(i in 1:nleaftypes){
 		
-		dfr <- try(read.table(lfile, skip=leafloc[i]+1, nrows=npoints[i]), silent=TRUE)
-		
+    # old version
+# 		dfr <- try(read.table(lfile, skip=leafloc[i]+1, nrows=npoints[i]), silent=TRUE)
+    # More robust (when there are blank lines in the L file.)
+    dfr <- try(read.table(text=paste(r[(leafloc[i]+2):(leafloc[i]+npoints[i]+1)], collapse="\n")))
+    
+    # If reading failed, delete last row, try again (until it does work).
+    # This takes care of some files that don't have as many points as shown in the L file.
 		if(inherits(dfr, "try-error") && grepl("did not have 2",dfr)){
 			k <- 1
 			while(inherits(dfr, "try-error")){
@@ -34,7 +39,9 @@ readl <- function(lfile=NA){
 		
 		l <- list()
 		if(!sum(dfr[nrow(dfr),] == 0))dfr <- rbind(dfr, c(0,0))
-		l$XYZ <- matrix(cbind(dfr[,1],dfr[,2],rep(0,nrow(dfr))), ncol=3)
+		
+    l$XYZ <- matrix(cbind(dfr[,1],dfr[,2],rep(0,nrow(dfr))), ncol=3)
+    
 		colnames(l$XYZ) <- c("X","Y","Z")
 		
 		# Is there a point along the midrib?

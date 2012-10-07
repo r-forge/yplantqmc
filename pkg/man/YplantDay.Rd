@@ -14,7 +14,7 @@ containing weather data, solar position, and number of timesteps.
 Optionally, a \code{phy} object is used which contains the leaf gas exchange model for the simulation,
 to calculate photosynthesis (and possibly transpiration rate) from light capture and other weather variables.
 
-Also optionally is the use of a \code{hemi} object, which specifies shading by a canopy. 
+Also optional is the use of a \code{hemi} object, which specifies shading by a canopy. 
 }
 \usage{
 \method{YplantDay}{plant3d}(x, met, phy = NULL, hemi = NULL,quiet=FALSE,

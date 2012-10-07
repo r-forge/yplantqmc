@@ -37,11 +37,14 @@ readplantlist <- function(pfiles=NA, lfiles=NA, lpk=NA, multiplier=1.0){
 	}
 	
 	plants[whichbad] <- NULL
-	
+	pfilesnotread <- pfiles[whichbad]
+  lfilesnotread <- lfiles[whichbad]
+  
 	pfiles <- sapply(plants, "[[", "pfile")
 	lfiles <- sapply(plants, "[[", "lfile")
 	
-	attributes(plants) <- list(pfiles=pfiles, lfiles=lfiles, nplants=length(plants))
+	attributes(plants) <- list(pfiles=pfiles, lfiles=lfiles, nplants=length(plants),
+                             notread=data.frame(pfile=pfilesnotread,lfile=lfilesnotread))
 	class(plants) <- "plant3dlist"
 	
 	return(plants)
