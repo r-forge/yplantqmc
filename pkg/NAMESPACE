@@ -3,7 +3,7 @@ export(constructplant,changeinternodes,xmastime,crownhull,Farquhar,getangles,get
 includePhy,installQuasiMC,leafdispersion,lightresponse,modifypfile,psrdata,readl,readp,
 readplantlist,projectplant,replaceangles,runYplant,setMet,setLocation,setPhy,
 setHemi, evalHemi,Silhouette,STARbar,YplantDay,viewplot,makereport,plot.yphemi,
-randomplant)
+randomplant,zenaz)
 S3method(plot, leaffile)
 S3method(plot, plant3d)
 S3method(plot, plant3dlist)

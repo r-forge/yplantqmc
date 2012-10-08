@@ -7,3 +7,4 @@
 0.2-5	Minor improvements to constructplant() and readl(). (Rare) bug (?) with pathlen() is now safe (but not fixed).
 0.2-6	Crown projected area added to summary.plant3d(). 
 0.2-7	Added randomplant, utility to construct geometric shapes with randomly placed leaves. Minor help edits.
+0.2-8 Revamp of zenaz (all native R to avoid rare memory leak with Fortran routines)
