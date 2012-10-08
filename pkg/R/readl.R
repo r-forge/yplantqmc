@@ -24,7 +24,8 @@ readl <- function(lfile=NA){
     # old version
 # 		dfr <- try(read.table(lfile, skip=leafloc[i]+1, nrows=npoints[i]), silent=TRUE)
     # More robust (when there are blank lines in the L file.)
-    dfr <- try(read.table(text=paste(r[(leafloc[i]+2):(leafloc[i]+npoints[i]+1)], collapse="\n")))
+    dfr <- try(read.table(text=paste(r[(leafloc[i]+2):(leafloc[i]+npoints[i]+1)], 
+                                     collapse="\n")), silent=TRUE)
     
     # If reading failed, delete last row, try again (until it does work).
     # This takes care of some files that don't have as many points as shown in the L file.
