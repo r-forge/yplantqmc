@@ -75,20 +75,22 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 				stop("Please specify a leaf file.")
 
 			# .... needs to be updated again (readl has changed).
-			# message("Using built-in triangle leaf.")
-			# ldata <- structure(list(XYZ = structure(c(0, 5, 0, -5, 0, 0, 10, 0, 0, 
-				# 0, 0, 0), .Dim = c(4L, 3L), .Dimnames = list(NULL, c("X", "Y", 
-				# "Z"))), midribpoints = c(1, 3), leafpars = structure(c(-999, 
-				# -999, -999, -999, -999, NA), .Names = c("Rd", "QY", "shape", 
-				# "absorp", "reflec", "")), leaftype = 1, nleaftypes = 1L, midriblen = 10, 
-					# leafshape = 0.5), .Names = c("XYZ", "midribpoints", "leafpars", 
-				# "leaftype", "nleaftypes", "midriblen", "leafshape"), class = "leaffile")
-			# lfile <- "triangle"
-			# lfile <- choose.files(caption="Select .L or .LF file")
-			# if(length(lfile) > 0)
-				# ldata <- readl(lfile[1])
-			# else
-				# ldata <- NA
+			message("Using built-in triangle leaf.")
+			ldata <- structure(list(structure(list(XYZ = structure(c(0, 5, 0, -5, 
+    0, 0, 10, 0, 0, 0, 0, 0), .Dim = c(4L, 3L), .Dimnames = list(
+        NULL, c("X", "Y", "Z"))), midribpoints = c(1, 3), leafpars = structure(c(-999, 
+    -999, -999, -999, -999, NA), .Names = c("Amax", "Rd", "QY", "shape", 
+    "absorp", "")), leaftype = 1L, nleaftypes = 1L, midriblen = 10, 
+        leafshape = 0.5), .Names = c("XYZ", "midribpoints", "leafpars", 
+    "leaftype", "nleaftypes", "midriblen", "leafshape"), class = "leaffile")), class = "leaffile")
+			lfile <- "triangle"
+			
+      # Old option to choose file from menu (not platform-independent!)
+#       lfile <- choose.files(caption="Select .L or .LF file")
+# 			if(length(lfile) > 0)
+# 				ldata <- readl(lfile[1])
+# 			else
+# 				ldata <- NA
 	}
 	
 	# If still no leaf read, stop here:
@@ -315,5 +317,3 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 class(l) <- "plant3d"
 return(l)
 }
-
-# loadnew <- function()source("C:\\remko\\SYDNEY\\MODELS\\R Packages\\YPLANTER2\\R\\constructplant.R")

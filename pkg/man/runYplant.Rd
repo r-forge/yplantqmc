@@ -15,7 +15,7 @@ transpiration rate). Also optionally, a hemiphoto object is used to calculate sh
 
 Output is not as easy to use as the more user-friendly \code{\link{YplantDay}}. If you are only interested in
 diurnal simulations (and plant totals by timestep), use that function. The \code{runYplant} function is available
-for programming purposes (and advanced custom simulations).
+for programming purposes (and more advanced custom simulations).
 }
 \usage{
 runYplant(plant = NULL, phy = NULL, hemi = NULL, reldiff = NULL, 

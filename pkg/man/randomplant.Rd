@@ -61,8 +61,7 @@ If \code{writefile=TRUE}, the Q file is written to the current working directory
 returns a dataframe that can be used directly in \code{constructplant}, see Details.
 }
 \author{
-Remko Duursma
-Belinda Medlyn for SURFACE subroutine in MAESTRA, used here.
+Remko Duursma. Uses code from Belinda Medlyn (SURFACE subroutine in MAESTRA).
 }
 \note{
 Currently only random distributions are supported. I have at this time no idea how to produce
@@ -82,8 +81,8 @@ leaflen=40, LA=1.5, LAunits="m2",writefile=TRUE)
 # Embed the function in a call to 'constructplant', giving a plant in the 
 # YplantQMC format.
 # Because no leaf file is specified, it uses a built-in triangle-shaped leaf.
-coneplant <- constructplant(randomplant(radius=250, height=500, shape="CONE",
-leaflen=100, nleaves=20))
+ coneplant <- constructplant(randomplant(radius=250, height=500, shape="CONE",
+ leaflen=25, LA=1))
 
 }
 }
