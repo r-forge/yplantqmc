@@ -6,9 +6,9 @@ readplantlist <- function(pfiles=NA, lfiles=NA, lpk=NA, multiplier=1.0){
 		stop("Provide equal number of plant and leaf files.")
 	# Read from leafplantkey
 	if(!is.na(lpk)){
-		lpk <- read.csv(lpk, header=FALSE)
-		pfiles <- as.character(lpk[,1])
-		lfiles <- as.character(lpk[,2])
+		lpk <- read.csv(lpk, header=FALSE, stringsAsFactors=FALSE)
+		pfiles <- lpk[,1]
+		lfiles <- lpk[,2]
 	} 
 
 	# Or, provided as arguments.

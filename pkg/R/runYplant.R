@@ -25,7 +25,7 @@ runYplant <- function(plant=NULL,
 			runphoto=TRUE,
 			intern=TRUE,
 			debug=FALSE,  
-			delfiles=FALSE,
+			delfiles=TRUE,
 			rewriteplantfile=TRUE,   # Not for users! Only for YplantDay.
 			...    # parameters to writecfg (for QuasiMC)
 			){

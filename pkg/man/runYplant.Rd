@@ -23,7 +23,7 @@ runYplant(plant = NULL, phy = NULL, hemi = NULL, reldiff = NULL,
 	PAR0 = 1, PARwhere = c("above", "below"), Ca = 390, Tair = 25, 
 	Patm = 101, reflec = c(0.1, 0.1), transmit = c(0.1, 0.1), 
 	runphoto = TRUE, intern = TRUE, 
-	debug = FALSE, delfiles=FALSE, rewriteplantfile = TRUE, ...)
+	debug = FALSE, delfiles=TRUE, rewriteplantfile = TRUE, ...)
 }
 \arguments{
   \item{plant}{An object of class 'plant3d', see \code{\link{constructplant}}}
