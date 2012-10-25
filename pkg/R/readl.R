@@ -1,6 +1,5 @@
 readl <- function(lfile=NA){
 
-
   options(warn=-1)
 
   if(is.na(lfile)){
@@ -28,7 +27,7 @@ readl <- function(lfile=NA){
                                      collapse="\n")), silent=TRUE)
     
     # If reading failed, delete last row, try again (until it does work).
-    # This takes care of some files that don't have as many points as shown in the L file.
+    # This takes care of some files that don't have as many points as expected based on the first line in the L file.
 		if(inherits(dfr, "try-error") && grepl("did not have 2",dfr)){
 			k <- 1
 			while(inherits(dfr, "try-error")){

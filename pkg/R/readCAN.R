@@ -26,7 +26,7 @@ readCAN <- function(canfile){
 	weights <- diff(sin((pi/180)*seq(0,90,by=4.5)))
 	weightm <- matrix(rep(weights, each=8), ncol=8, byrow=TRUE)
 	
-	# Openness relatiev to area of tile.
+	# Openness relative to area of tile.
 	hemimat <- hemimat/(20*weightm)
 	
 	# clip > 1 and < 0.

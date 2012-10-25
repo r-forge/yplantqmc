@@ -28,10 +28,10 @@ replaceangles <- function(whichangle="An.3",    # Or An.2 (petiole), Or (midrib 
 		newangles <- drawsample(distobj, N, degrees=TRUE)
 	}
 	if(!is.null(newangles)){
-		if(length(newangles) < N)
+		if(length(newangles) < N){
 			if(length(newangles)==1)newangles <- rep(newangles, N)
 			if(length(newangles)>1)newangles <- sample(newangles, N, replace=TRUE)
-		else
+		} else
 			newangles <- newangles[1:N]
 	}
 	if(is.null(newangles)&is.null(distobj))stop("No new angles specified\n")
