@@ -20,4 +20,5 @@ crownhull <- function(xyz, plotit=TRUE, alpha=0.8){
 return(list(crownvolume=ch$vol, crownsurface=ch$area))
 }
 
-#loadhull <- function()source("C:\\remko\\SYDNEY\\MODELS\\R Packages\\YPLANTER2\\R\\crownhull.R")
+
+
