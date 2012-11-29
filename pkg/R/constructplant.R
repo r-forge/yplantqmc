@@ -1,5 +1,5 @@
 constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
-					X0=0, Y0=0, Z0=0, warn=FALSE){
+					X0=0, Y0=0, Z0=0, warn=FALSE, quiet=FALSE){
 			
 	inputformat <- "P"
 
@@ -75,7 +75,7 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 				stop("Please specify a leaf file.")
 
 			# .... needs to be updated again (readl has changed).
-			message("Using built-in triangle leaf.")
+		  if(!quiet)message("Using built-in triangle leaf.")
 			ldata <- structure(list(structure(list(XYZ = structure(c(0, 5, 0, -5, 
     0, 0, 10, 0, 0, 0, 0, 0), .Dim = c(4L, 3L), .Dimnames = list(
         NULL, c("X", "Y", "Z"))), midribpoints = c(1, 3), leafpars = structure(c(-999, 
@@ -299,7 +299,7 @@ constructplant <- function(pfile=NULL,  lfile=NULL,  qfile=NULL, multiplier=1.0,
 	if(is.character(pfile))
 		l$pfile <- pfile
 	else
-		l$pfile <- paste0("Plant",format(Sys.time(), "%Y-%m-%d_%H:%M"))
+		l$pfile <- paste0("Plant",format(Sys.time(), "%Y-%m-%d_%H-%M"),".txt")
 		
 	l$lfile <- lfile
 	if(inputformat =="Q")l$qdata <- qdata else l$qdata <- NA

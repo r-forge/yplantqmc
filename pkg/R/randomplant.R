@@ -4,39 +4,30 @@ randomplant <- function(nleaves=500, radius=250, height=500,
 						crownbase=0,
 						LAD=angledist("ellipsoid",1),
 						leaflen=30,
-						LA=NULL, LAunits=c("m2","mm2","cm2"), lfile=NULL,
+						LA=NULL, lfile=NULL,
 						writefile=FALSE, quiet=FALSE
 						){
 						
 					
 	shape <- match.arg(shape)
-	
-	# if(!is.null(LA) && is.null(lfile))
-		# stop("Need leaf file if total leaf area is specified")
-	
+
+	# Get leaf shape from lfile, otherwise it will use triangleleaf (shape=0.5).
+	if(!is.null(lfile)){
+	  l <- readl(lfile)
+	  if(length(l)>1 && !quiet)
+	    message("Using first leaf type in leaf file only.")
+	  l <- l[[1]]
+	  leafshape <- l$leafshape
+	} else {
+	  leafshape <- 0.5
+	}
+  
 	if(!is.null(LA)){
-		
-		# Get leaf shape from lfile, otherwise it will use triangleleaf (shape=0.5).
-		if(!is.null(lfile)){
-			l <- readl(lfile)
-			if(length(l)>1 && !quiet)
-				message("Using first leaf type in leaf file only.")
-			l <- l[[1]]
-			leafshape <- l$leafshape
-		} else {
-			leafshape <- 0.5
-		}
-		
+			
 		laleaf <- leaflen^2 * leafshape
-		
-		LAunits <- match.arg(LAunits)
-		mult <- switch(LAunits,
-		           m2 = 10^6,
-				   cm2 = 10^4,
-				   mm2 = 1)
-		
-		nleaves <- mult*LA / laleaf
-		if(!quiet)message("Aiming for leaf area = ", round(LA,4), " ", LAunits)
+
+		nleaves <- 10^6 * LA / laleaf
+		if(!quiet)message("Aiming for leaf area = ", signif(LA,4), " m2")
 	}
 	
 
@@ -90,7 +81,7 @@ randomplant <- function(nleaves=500, radius=250, height=500,
 	#
 	LAactual <- 10^-6 * sum(leafshape * xyz$len^2)
 	if(!quiet){
-		message("Actual leaf area = ", round(LAactual,4), " ", LAunits)
+		message("Actual leaf area = ", signif(LAactual,4), " m2")
 		message("Number of leaves = ", nrow(xyz))
 	}		  
 	

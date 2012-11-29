@@ -147,10 +147,12 @@ runYplant <- function(plant=NULL,
 	# Results by leaf.
 	ypresults <- data.frame(PAR0=PAR0, PARinc=PARinc, PARleaf=PARs, PARdir=PARdir, 
 		PARdiff=PARdiff, reldiff=reldiff, reldir=reldir)
-	# ypresults$LA <- LAtot  # might be length = 1
-	ypresults$LA <- plant$leafdata$area  # might be length = 1
-	ypresults$LAproj <- LAproj # might be length = 1
-	ypresults$LAsunlit <- LAsunlit # might be length = 1
+	
+  if(nrow(ypresults) != plant$nleaves)stop("Critical failure. nrow(yplant) != plant$nleaves")
+  
+	ypresults$LA <- plant$leafdata$area
+	ypresults$LAproj <- LAproj
+	ypresults$LAsunlit <- LAsunlit
 	
 	if(runphoto){
 		# Run photosynthesis module.

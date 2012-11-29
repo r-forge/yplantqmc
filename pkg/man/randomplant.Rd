@@ -12,8 +12,7 @@ shape = c("BOX", "CONE", "HELIP", "PARA", "ELIP", "CYL"),
 crownbase = 0, 
 LAD = angledist("ellipsoid", 1), 
 leaflen = 30, 
-LA = NULL, 
-LAunits = c("m2", "mm2", "cm2"), 
+LA = NULL,  
 lfile = NULL, 
 writefile = FALSE, 
 quiet = FALSE)
@@ -26,8 +25,7 @@ quiet = FALSE)
   \item{crownbase}{Height to crownbase (mm).}
   \item{LAD}{Leaf angle distribution.}
   \item{leaflen}{The leaf length (constant value for all leaves).}
-  \item{LA}{Total leaf area, optional.}
-  \item{LAunits}{Units of LA, only needed when LA specified.}
+  \item{LA}{Total leaf area, optional (m2)}
   \item{lfile}{Name of the leaf file (see \code{\link{readl}}), if left unspecified a triangle is used.}
   \item{writefile}{Logical. If TRUE, writes a Q file to disk.}
   \item{quiet}{Logical. If FALSE, no messages are printed to the console.}
@@ -76,7 +74,7 @@ clumped or uniform distributions in 3D (if you do, let me know).
 # An ellipsoid shape crown, write a Q file to disk.
 # Specify approximate total leaf area.
 randomplant(radius=400, height=2000, shape="ELIP",
-leaflen=40, LA=1.5, LAunits="m2",writefile=TRUE)
+leaflen=40, LA=1.5, writefile=TRUE)
 
 # Embed the function in a call to 'constructplant', giving a plant in the 
 # YplantQMC format.

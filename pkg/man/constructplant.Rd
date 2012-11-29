@@ -17,7 +17,7 @@ Three plants are provided with \code{YplantQMC} (and automatically loaded) :\cod
 }
 \usage{
 constructplant(pfile = NULL, lfile = NULL, qfile = NULL, multiplier=1.0, 
-X0 = 0, Y0 = 0, Z0 = 0, warn=FALSE)
+X0 = 0, Y0 = 0, Z0 = 0, warn=FALSE, quiet=FALSE)
 readplantlist(pfiles=NA, lfiles=NA, lpk=NA, multiplier=1)
 }
 \arguments{
@@ -26,6 +26,7 @@ readplantlist(pfiles=NA, lfiles=NA, lpk=NA, multiplier=1)
   \item{multiplier}{Multiplies length dimensions, e.g. to change units.}
   \item{X0,Y0,Z0}{New x,y,z coordinate of the stem base.}
   \item{warn}{If TRUE, writes warnings of minor issues with P file format.}
+  \item{quiet}{If TRUE, no messages are ever shown.}
   \item{pfiles,lfiles}{Vectors of .p files and .l files.}
   \item{lpk}{Optionally, a 'leafplantkey' file. See Details.}
 }
