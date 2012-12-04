@@ -13,8 +13,9 @@ STARbar.plant3d <- function(object, method=c("gridtracer","exact","QuasiMC","slo
 	method <- match.arg(method)
 	integration <- match.arg(integration)
 
-	if(method %in% c("QuasiMC","slowquasimc") && .Platform$OS.type != "windows")
-		stop("Select different method: QuasiMC is currently only available in Windows")
+        # Windows only. # MC 4/12/2012 - updated to include Mac OS X
+	if(method %in% c("QuasiMC","slowquasimc") && .Platform$OS.type != "windows" && (Sys.info()[['sysname']] != "Darwin"))
+		stop("Select different method: QuasiMC is currently only available in Windows and Mac OS X.")
 	
 	if(quiet)progressbar <- FALSE
 	

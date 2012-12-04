@@ -4,9 +4,9 @@ YplantDay.plant3d <- function(x, met, phy=NULL, hemi=NULL, quiet=FALSE,
 	
 	plant <- x
 	
-	# Windows only.
-	if(.Platform$OS.type != "windows")
-		stop("QuasiMC runs on Windows only (for now).")
+	# Windows only. # MC 4/12/2012 - updated to include Mac OS X
+	if(.Platform$OS.type != "windows" && (Sys.info()[['sysname']] != "Darwin"))
+		stop("QuasiMC runs on Windows and Mac OS X only.")
 	
 	# Check input
 	if(!inherits(plant, "plant3d"))stop("Need object of class 'plant'; see ?constructplant.")

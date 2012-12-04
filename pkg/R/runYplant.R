@@ -31,9 +31,10 @@ runYplant <- function(plant=NULL,
 			){
 	
 	
-	# Windows only.
-	if(.Platform$OS.type != "windows")
-		stop("QuasiMC runs on Windows only.")
+	# Windows only. # MC 7/11/2012 - updated to include Mac OS X
+        # .Platform$OS.type returns "unix" for Mac, so need to check Sys.info()
+	if((.Platform$OS.type != "windows") && (Sys.info()[['sysname']] != "Darwin"))
+		stop("QuasiMC is currently available for Windows and Mac OS X only.")
 	
 	# If 'above', PAR0 is measured above the canopy (and so must be downscaled with hemi),
 	# if 'below', PAR0 is already reduced by canopy shading.

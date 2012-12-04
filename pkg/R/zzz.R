@@ -5,12 +5,19 @@
 		as.character(ver))
     packageStartupMessage(msg)
 	
-	if(.Platform$OS.type != "windows")
-		packageStartupMessage("-- You are not using a Windows machine - YplantDay() and runYplant() will not work.")
+        # MC 4/12/2012 - updated to include Mac OS X	
+	if(.Platform$OS.type != "windows" && (Sys.info()[['sysname']] != "Darwin"))
+		packageStartupMessage("-- You are not using a Windows or Mac machine - YplantDay() and runYplant() will not work.")
 	
-	if(!checkInstallation() & .Platform$OS.type == "windows"){
+	if(!checkInstallation()){
 		packageStartupMessage("!- To Install QuasiMC, type installQuasiMC().")
-		packageStartupMessage("   You need an internet connection - two files will be copied to c:/QuasiMC")
+                if (.Platform$OS.type == "windows"){
+		        packageStartupMessage("   You need an internet connection - two files will be copied to c:/QuasiMC")
+                }
+                else if (Sys.info()[['sysname']] != "Darwin") {
+                        qmc_dir = paste(path.expand("~"),"/QuasiMC/",sep="")
+                        packageStartupMessage(paste("   You need an internet connection - two files will be copied to", qmc_dir))
+                }
 	}
 }
 
