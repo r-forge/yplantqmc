@@ -22,7 +22,7 @@ installQuasiMC <- function(proxy=FALSE){
 	} else if (Sys.info()[['sysname']] == "Darwin") {
 
                qmc_dir = paste(path.expand("~"),"/QuasiMC/",sep="")
-               qmc_tgz = "QuasiMC_10_8.tgz"
+               qmc_tgz = "QuasiMC_Mac.tgz"
                qmc_file = paste(qmc_dir,qmc_tgz,sep="")
 
                if(!file.exists(qmc_dir)){
@@ -39,7 +39,7 @@ installQuasiMC <- function(proxy=FALSE){
                download.file(paste("http://dl.dropbox.com/u/28862459/",qmc_tgz,sep=""), qmc_file)
                untar(qmc_file, exdir=qmc_dir)
                message("'QuasiMC.app' and 'enviro.e' have been placed in the folder '~/QuasiMC'.\n !- Please do not rename or move!\n")
-               message("Current QuasiMC.app is for Mac OS 10.8")
+               message("Current QuasiMC.app is for Mac OS >= 10.5")
         } else {
 	       stop("QuasiMC is (currently) available for Windows and Mac OS X only.")
 	}
