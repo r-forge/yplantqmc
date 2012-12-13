@@ -12,3 +12,4 @@
 0.2-10 Minor fixes
 0.2-11 Bug fixes in randomplant.R, and makeQMCinput (when no P file exists).
 0.2-12 Added support for Mac OS X 10.8
+0.2-13 Added option to summary.yplantsimlist.R
