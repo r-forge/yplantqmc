@@ -81,7 +81,7 @@ plot.yplantsim <- function(x, type=c("dayplot","LAsunlit"), xlab="Time of day (h
 	
 		psr <- psrdata(x)
 		if(all(is.na(psr$LAsunlit))){
-			plot(1, type='n', ann=FALSE, axes=FALSE)
+			#plot(1, type='n', ann=FALSE, axes=FALSE)
 		} else {
 			with(psr, plot(timeofday, LAsunlit/LAplant, pch=21, bg="white",
 				xlim=xlim, ylim=c(0,1),type='o',

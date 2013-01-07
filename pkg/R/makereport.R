@@ -4,11 +4,11 @@ makereport <- function(plant=NULL, phy=NULL, met=NULL, hemi=NULL, ypsim=NULL, fi
 	if(!r)stop("To make a PDF report, install the 'gplots' package.")
 
 	if(is.na(filename)){
-		filen <- paste0("YplantQMC_report_",as.Date(Sys.time()),".pdf")
+		filename <- paste0("YplantQMC_report_",as.Date(Sys.time()),".pdf")
 	}
 
 	# open pdf
-	pdf(filen, onefile=TRUE)
+	pdf(filename, onefile=TRUE)
 
 	emptyplot <- function(){
 		par(mar=c(0,0,0,0),xaxs="i",yaxs="i")
@@ -125,7 +125,7 @@ makereport <- function(plant=NULL, phy=NULL, met=NULL, hemi=NULL, ypsim=NULL, fi
 	
 	dev.off()
 	message("Report generation probably successful.")
-	message("See file \'",filen,"\' in directory :\n  ",getwd())
+	message("See file \'",filename,"\' in directory :\n  ",getwd())
 	
 }
 # makereport(phy=eucphy, met=aprilday, plant=epil, ypsim=epilrun, hemi=myhemi)

@@ -41,7 +41,7 @@ readplantlist <- function(pfiles=NA, lfiles=NA, lpk=NA, multiplier=1.0){
   lfilesnotread <- lfiles[whichbad]
   
   if(length(whichbad) > 0)
-    message("Some plants could not be read. See atttributes(MyPlants)$notread")
+    message("Some plants could not be read. See attributes(MyPlants)$notread")
   
 	pfiles <- sapply(plants, "[[", "pfile")
 	lfiles <- sapply(plants, "[[", "lfile")
