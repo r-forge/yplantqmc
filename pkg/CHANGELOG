@@ -14,3 +14,4 @@
 0.2-12 Added support for Mac OS X 10.8
 0.2-13 Added option to summary.yplantsimlist.R
 0.2-14 Bug fix in makereport.R (crash on providing filename)
+0.2-15 Significant speed improvement to makeQMCinput()
