@@ -186,6 +186,7 @@ plot.plant3d <- function(x,
 	}
 
 options(warn=0)
+  return(invisible(LM))
 }
 
 # loadplot <- function()source("C:\\remko\\SYDNEY\\MODELS\\R Packages\\YPLANTER2\\R\\plot.plant3d.R")
