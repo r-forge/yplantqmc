@@ -16,3 +16,4 @@
 0.2-14 Bug fix in makereport.R (crash on providing filename)
 0.2-15 Significant speed improvement to makeQMCinput()
 0.3-1 (Incomplete) support for stand3d objects
+0.3-2 change default for readplantlist, doc updates.

@@ -15,6 +15,8 @@ Optionally, a \code{phy} object is used which contains the leaf gas exchange mod
 to calculate photosynthesis (and possibly transpiration rate) from light capture and other weather variables.
 
 Also optional is the use of a \code{hemi} object, which specifies shading by a canopy. 
+
+If you don't know where to start, run the example at the bottom of this page.
 }
 \usage{
 \method{YplantDay}{plant3d}(x, met, phy = NULL, hemi = NULL,quiet=FALSE,

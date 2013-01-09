@@ -11,7 +11,7 @@ makeStand <- function(plants=list(),
   
   # Shift plants.
   for(i in 1:length(plants)){
-    plants[[i]] <- shiftplant(plants[[i]], xyz$x[i], xyz$y[i], xyz$z[i])
+    plants[[i]] <- shiftplant(plants[[i]], xyz[i,1], xyz[i,2], xyz[i,3])
   }
   
   # Find plotbox, if not provided already.

@@ -1,5 +1,7 @@
 \name{runYplant}
 \alias{runYplant}
+\alias{runYplant.plant3d}
+\alias{runYplant.stand3d}
 
 \title{
 A single simulation of YplantQMC
@@ -18,12 +20,13 @@ diurnal simulations (and plant totals by timestep), use that function. The \code
 for programming purposes (and more advanced custom simulations).
 }
 \usage{
-runYplant(plant = NULL, phy = NULL, hemi = NULL, reldiff = NULL, 
+\method{runYplant}{plant3d}(x, phy = NULL, hemi = NULL, reldiff = NULL, 
 	reldir = NULL, 	altitude = 90, azimuth = 0, fbeam = 1, VPD = 1.5, 
 	PAR0 = 1, PARwhere = c("above", "below"), Ca = 390, Tair = 25, 
 	Patm = 101, reflec = c(0.1, 0.1), transmit = c(0.1, 0.1), 
 	runphoto = TRUE, intern = TRUE, 
 	debug = FALSE, delfiles=TRUE, rewriteplantfile = TRUE, ...)
+\method{runYplant}{stand3d}(x,...)
 }
 \arguments{
   \item{plant}{An object of class 'plant3d', see \code{\link{constructplant}}}

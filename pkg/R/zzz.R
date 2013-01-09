@@ -1,7 +1,7 @@
 .onAttach <- function(lib, pkg) {
     
 	ver <- read.dcf(file.path(lib,pkg,"DESCRIPTION"), "Version")
-    msg <- sprintf("\n-- Plant modelling with Yplant - QuasiMC for R (version %s)\n\tRefer to the manual for detailed instructions.\n", 
+    msg <- sprintf("\n-- Plant modelling with Yplant - QuasiMC for R (version %s)\n\tRefer to the manual for detailed instructions, \nor see the example in ?YplantDay.\n", 
 		as.character(ver))
     packageStartupMessage(msg)
 	
