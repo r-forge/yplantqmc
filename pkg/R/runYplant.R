@@ -1,6 +1,7 @@
 
+runYplant <- function(x,...)UseMethod("runYplant")
 
-runYplant <- function(plant=NULL, 
+runYplant.plant3d <- function(x, 
 			phy=NULL,
 			hemi=NULL,
 			reldiff=NULL,  # vector of length nleaves (diffuse radiation, relative units).
@@ -30,7 +31,8 @@ runYplant <- function(plant=NULL,
 			...    # parameters to writecfg (for QuasiMC)
 			){
 	
-	
+	plant <- x
+  
 	# Windows only. # MC 7/11/2012 - updated to include Mac OS X
         # .Platform$OS.type returns "unix" for Mac, so need to check Sys.info()
 	if((.Platform$OS.type != "windows") && (Sys.info()[['sysname']] != "Darwin"))
@@ -40,8 +42,8 @@ runYplant <- function(plant=NULL,
 	# if 'below', PAR0 is already reduced by canopy shading.
 	PARwhere <- match.arg(PARwhere)
 	
-	if(is.null(plant) || !inherits(plant,"plant3d"))
-		stop("Must provide 'plant3d' object to run Yplant (see ?constructplant).")
+# 	if(is.null(plant) || !inherits(plant,"plant3d"))
+# 		stop("Must provide 'plant3d' object to run Yplant (see ?constructplant).")
 	
 	# Extract the phy object from the plant - if it exists.
 	if(!is.null(plant$phy))phy <- plant$phy

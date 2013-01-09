@@ -49,6 +49,8 @@ makeStand <- function(plants=list(),
   
   l <- list()
   l$plants <- plants
+  l$nplants <- length(plants)
+  l$nleaves <- sapply(plants, "[[","nleaves")
   l$xyz <- xyz
   l$plotbox <- plotbox
   l$LAI <- LAI
