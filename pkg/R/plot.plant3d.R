@@ -1,5 +1,5 @@
 plot.plant3d <- function(x,
-					  noleaves=FALSE,    # suppress leaf plotting.
+					  noleaves=FALSE,
 					  squarewidth=250,
 					  addcrownhull=FALSE,
 					  hullalpha=0.4,
@@ -18,44 +18,21 @@ plot.plant3d <- function(x,
 					  ){  
 
 	plant <- x
+  
+  if(!all(shiftxyz==0)){
+    
+    plant <- shiftplant(plant, shiftxyz[1],shiftxyz[2],shiftxyz[3])
+    
+  }
+  
 	if(noleaves){
 		leaffill <- FALSE
 		leafoutline <- FALSE
 	}
 	
-  if(cylinderstems && !identical(shiftxyz, c(0,0,0))){
-    warning("This is a bug: cannot draw cylinder stems when shifting the plant from the origin.")
-    cylinderstems <- FALSE
-  }
-  
-	# r <- require(rgl, quietly=TRUE)				  
-	# if(!r)stop("Need to install package 'rgl'")
-	
 	inputformat <- plant$inputformat
 	if(stems && inputformat == "Q")stems <- FALSE  # Q format does not support stems.
 
-	# Too bad .... no longer works.
-	# # Leaf colors
-	# if(leafcolor == "autumn")leafcolor <- "fall"
-	# if(leafcolor == "fall"){
-		# leafcolor <- c("#FED976","#FEB24C","#FD8D3C","#FC4E2A","#E31A1C","#BD0026")
-		# #brewer.pal(9, "YlOrRd")[2:8]
-	# }
-	
-	shiftm <- function(m,v){
-		n <- nrow(m)
-		plusm <- matrix(rep(v,each=n),nrow=n)
-		m + plusm
-	}
-	
-	# Set up the canvas for plotting:
-	# zheight <- 1000 * zheight 
-	# xradius <- zheight/2
-	# yradius <- zheight/2
-	# x <- c(-xradius, xradius)
-	# y <- c(-yradius, yradius)
-	# z <- matrix(nrow=length(x),ncol=length(x))
-	# z[,] <- 0
 	
 	# Plot grey square on the ground:
 	if(!add)open3d()
@@ -89,7 +66,6 @@ plot.plant3d <- function(x,
 			Ms[[i]] <- rbind(rbind(plant$stems[[i]]$xyz$from, plant$stems[[i]]$xyz$to))
 		}
 		Ms <- do.call("rbind", Ms)
-		Ms <- shiftm(Ms,shiftxyz)
 		segments3d(Ms, col=stemcol)
 			
 		# Branches.
@@ -98,7 +74,6 @@ plot.plant3d <- function(x,
 			Ms[[i]] <- rbind(rbind(plant$branches[[i]]$xyz$from, plant$branches[[i]]$xyz$to))
 		}
 		Ms <- do.call("rbind", Ms)
-		Ms <- shiftm(Ms,shiftxyz)
 		segments3d(Ms, col=branchcol)
 	}
 	# Add cylinder sections.
@@ -111,7 +86,6 @@ plot.plant3d <- function(x,
 		Ms[[i]] <- rbind(rbind(plant$petioles[[i]]$xyz$from, plant$petioles[[i]]$xyz$to))
 	}
 	Ms <- do.call("rbind", Ms)
-	Ms <- shiftm(Ms,shiftxyz)
 	segments3d(Ms, col=petiolecol)
 	}
 	
@@ -127,7 +101,6 @@ plot.plant3d <- function(x,
 			LM[[i]] <- LM[[i]][-c(1,nr*2),]
 		}
 		LM <- do.call("rbind", LM)
-		LM <- shiftm(LM,shiftxyz)
 		segments3d(LM, col="black")
 	}
 	
@@ -146,7 +119,6 @@ plot.plant3d <- function(x,
 			for(i in indices){
 				
 				m <- plant$leaves[[i]]$XYZ
-				m <- shiftm(m,shiftxyz)
 				x <- m[,1]
 				y <- m[,2]
 				z <- m[,3]
@@ -188,6 +160,3 @@ plot.plant3d <- function(x,
 options(warn=0)
   return(invisible(LM))
 }
-
-# loadplot <- function()source("C:\\remko\\SYDNEY\\MODELS\\R Packages\\YPLANTER2\\R\\plot.plant3d.R")
-# loadorig <- function()source("C:\\remko\\SYDNEY\\MODELS\\R Packages\\YPLANTER\\R\\plotplant3d.R")

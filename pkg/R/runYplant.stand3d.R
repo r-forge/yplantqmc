@@ -12,7 +12,7 @@ runYplant.stand3d <- function(x,...){
   
   # Fake 'plant' object; a link of all plants in the stand.
   p <- list(leaves=leaves)
-  p$nleaves <- sum(s$nleaves)
+  p$nleaves <- sum(stand$nleaves)
   
   # Make QuasiMC input file
   m <- makeQMCinput(p, writefile=FALSE)
@@ -29,5 +29,8 @@ runYplant.stand3d <- function(x,...){
   
   run <- runYplant.plant3d(p,...)
 
-  
+  run$plantnr <- rep(1:stand$nplants, stand$nleaves)
+
+return(run)
 }
+

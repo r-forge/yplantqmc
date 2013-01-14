@@ -16,6 +16,9 @@ plot.stand3d <- function(x,...){
   lines3d(M, col="darkgrey")
   
   # Add plants
-  for(i in 1:n)plot(x$plants[[i]], add=TRUE, squarewidth=0,...)
+  for(i in 1:n)plot(x$plants[[i]], 
+                    add=TRUE, 
+                    squarewidth=0, 
+                    ...)
   
 }
