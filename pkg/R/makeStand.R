@@ -54,6 +54,10 @@ makeStand <- function(plants=list(),
   l$xyz <- xyz
   l$plotbox <- plotbox
   l$LAI <- LAI
+  
+  ld <- lapply(plants, "[[", "leafdata")
+  l$leafdata <- do.call(rbind,ld)
+  
   class(l) <- "stand3d"
   return(l)
 }

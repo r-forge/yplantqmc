@@ -18,3 +18,4 @@
 0.3-1 (Incomplete) support for stand3d objects
 0.3-2 change default for readplantlist, doc updates.
 0.3-3 Fixed cylinder stem bug in plot.plant3d()
+0.3-4 Minor updates to stand3d support.

@@ -9,6 +9,8 @@ writePSRfile <- function(yplantsim, ndigits=6){
 	lfile <- yplantsim$plant$lfile
 	
 	proot <- gsub("\\.p$","",pfile, ignore.case=TRUE)
+  if(is.null(proot))
+    proot <- format(Sys.time(), "%Y-%m%-%d")
 	filen <- paste0(proot,"-YplantQMC.PSR")
 	
 	r <- c()

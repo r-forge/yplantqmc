@@ -4,15 +4,13 @@
 Download and install the QuasiMC executable
 }
 \description{
-Downloads the Windows executable necessary for running \code{\link{runYplant}} and 
+Downloads the Windows/Mac executable necessary for running \code{\link{runYplant}} and 
 \code{\link{YplantDay}}. 
 
-QuasiMC developed by Cieslak et al. (2008), which is part of the Virtual Laboratory plant modelling 
+QuasiMC is developed by Cieslak et al. (2008), which is part of the Virtual Laboratory plant modelling 
 software created at the University of Calgary (\url{http://www.algorithmicbotany.org}).
 
-The executable is \code{QuasiMC.exe} (ca. 7MB), and the settings file is \code{enviro.e} (tiny).
-
-Both files are placed in the directory \code{c:/QuasiMC}, which is created if it does not exist already.
+Both files are placed in the directory (for windows, \code{c:/QuasiMC}), which is created if it does not exist already.
 
 This function can also be used to update an existing installation.
 }

@@ -1,4 +1,12 @@
 
+YplantDay.stand3d <- function(x,...){
+  
+  stop("No method exists yet for a stand3d object. Will be added soon.")
+  
+}
+
+
+
 YplantDay.plant3d <- function(x, met, phy=NULL, hemi=NULL, quiet=FALSE,
 	                          writePSR=TRUE, writeOUT=FALSE, ...){  
 	
@@ -9,7 +17,6 @@ YplantDay.plant3d <- function(x, met, phy=NULL, hemi=NULL, quiet=FALSE,
 		stop("QuasiMC runs on Windows and Mac OS X only.")
 	
 	# Check input
-	if(!inherits(plant, "plant3d"))stop("Need object of class 'plant'; see ?constructplant.")
 	if(!inherits(met, "ypmet"))stop("Need object of class 'ypmet'; see ?setMet.")
 	if(!is.null(phy) && !inherits(phy, "ypphy"))stop("Need object of class 'ypphy'; see ?setPhy.")
 	if(!is.null(hemi) && !inherits(hemi, "yphemi"))stop("Need object of class 'yphemi'; see ?setHemi.")
@@ -18,11 +25,6 @@ YplantDay.plant3d <- function(x, met, phy=NULL, hemi=NULL, quiet=FALSE,
 	nsteps <- nrow(met$dat)
 	daylength <- met$daylength
 	hours <- met$dat$timeofday
-	
-	# # If some of the fbeam's are > 0, make sure the others are 0.01, so that projected+displayed
-	# # areas are actually calculated!
-	# if(any(met$dat$fbeam > 0))
-		# met$dat$fbeam[met$dat$fbeam == 0] <- 0.01
 	
 	#
 	if(!quiet){
@@ -56,7 +58,7 @@ YplantDay.plant3d <- function(x, met, phy=NULL, hemi=NULL, quiet=FALSE,
 		flush.console()
 	}
 	
-	# All other timesteps : only run QuasiMC if solar angle has changed.
+	# All other timesteps : only run QuasiMC if solar angle has changed (to save computing speed).
 	if(nsteps > 1){
 	for(i in 2:nsteps){
 
@@ -87,11 +89,10 @@ YplantDay.plant3d <- function(x, met, phy=NULL, hemi=NULL, quiet=FALSE,
 		othervars <- data.frame(timeofday = hours[i],
 		                        leafnr = plant$leafdata$leafnr,
 		                        timestep = ifelse(is.numeric(daylength),60*60 * daylength / nsteps,NA))
-								# leafarea = plant$leafdata$area)
 
 		res[[i]] <- cbind(othervars, res[[i]])
 	}
-	}  # if(nsteps > 1)
+	}
 
 	# Return; should also include simulation settings in here.
 	l <- list()
