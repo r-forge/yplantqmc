@@ -76,8 +76,8 @@ readl <- function(lfile=NA){
 		l$nleaftypes <- nleaftypes  #length(grep("leaf", readLines(lfile, warn=FALSE), ignore.case=TRUE))
 			
 		# Get leaf area factor
-		leafpoly <- as(cbind(l$XYZ[,1],l$XYZ[,2]),"gpc.poly")
-		leafarea <- area.poly(leafpoly)
+		leafpoly <- cbind(l$XYZ[,1],l$XYZ[,2])
+		leafarea <- areapoly(leafpoly)
 		l$midriblen <- unname(abs(l$XYZ[l$midribpoints[2],2] - l$XYZ[l$midribpoints[1],2] ))
 		l$leafshape <- leafarea / l$midriblen^2
 		

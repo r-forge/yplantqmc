@@ -20,9 +20,7 @@ runYplant.plant3d <- function(x,
 			# Leaf parameters.
 			reflec=c(0.1,0.1),
 			transmit=c(0.1,0.1),
-			# Other options.
-			# interpmethod="closest",
-			# ndiffpoints=100,  # for random method only
+			# Other options
 			runphoto=TRUE,
 			intern=TRUE,
 			debug=FALSE,  
@@ -41,9 +39,6 @@ runYplant.plant3d <- function(x,
 	# If 'above', PAR0 is measured above the canopy (and so must be downscaled with hemi),
 	# if 'below', PAR0 is already reduced by canopy shading.
 	PARwhere <- match.arg(PARwhere)
-	
-# 	if(is.null(plant) || !inherits(plant,"plant3d"))
-# 		stop("Must provide 'plant3d' object to run Yplant (see ?constructplant).")
 	
 	# Extract the phy object from the plant - if it exists.
 	if(!is.null(plant$phy))phy <- plant$phy
@@ -66,9 +61,6 @@ runYplant.plant3d <- function(x,
 	if(rewriteplantfile){
 		writeLines(plant$qmcinput, infile)
 	}
-	
-	# sun <- data.frame(zenith=pi/2-(pi/180*altitude), azimuth=(pi/180)*azimuth)
-	# write.table(sun, "directqmcin.dat",col.names=FALSE, row.names=FALSE)
 	
 	# Input file for QuasiMC - DIRECT radiation only.
 	writecfg(cfgfile="autoquasimc.cfg", 

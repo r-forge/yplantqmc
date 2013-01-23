@@ -16,9 +16,15 @@
                 }
                 else if (Sys.info()[['sysname']] != "Darwin") {
                         qmc_dir = paste(path.expand("~"),"/QuasiMC/",sep="")
-                        packageStartupMessage(paste("   You need an internet connection - two files will be copied to", qmc_dir))
+                        packageStartupMessage(paste("   You need an internet connection - two files will be copied to", qmc_dir,"\n"))
                 }
 	}
+  
+  r <- find.package("ypaddon", quiet=TRUE)
+  if(length(r) == 0){
+    ypaddonMessage()
+  }
+  
 }
 
 .onUnload <- function(libpath){

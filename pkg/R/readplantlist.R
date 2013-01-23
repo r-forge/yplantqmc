@@ -8,7 +8,7 @@ readplantlist <- function(pfiles=NA, lfiles=NA, lpk="leafplantkey.txt", multipli
 		stop("Provide equal number of plant and leaf files.")
 	# Read from leafplantkey
 	if(all(is.na(pfiles)) && file.exists(lpk)){
-		lpk <- read.csv(lpk, header=FALSE, stringsAsFactors=FALSE)
+		lpk <- read.csv(lpk, header=FALSE, stringsAsFactors=FALSE, strip.white=TRUE)
 		pfiles <- lpk[,1]
 		lfiles <- lpk[,2]
 	} 

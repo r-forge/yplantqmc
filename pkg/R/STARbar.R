@@ -126,19 +126,22 @@ STARbar.plant3d <- function(object, method=c("gridtracer","exact","QuasiMC","slo
 		l$sphericalSTAR <- sphericalSTAR
 	}
 	
-	if(method %in% c("exact","gridtracer")){
+  if(method == "exact")
+    stop("Method temporarily unavailable. Contact package maintainer.")
+  
+	if(method == "gridtracer"){
 		
 		# Initialize.
 		if(progressbar){
 			wp <- txtProgressBar(title = "Calculating STAR", 
 			label = "", min = 0, max = nangles, initial = 0, width = 50,style=3)
 		}	
-		exactbool <- ifelse(method == "exact",TRUE,FALSE)
+# 		exactbool <- ifelse(method == "exact",TRUE,FALSE)
  
 		# Calculate DA, PA for all angles.
 		for (i in 1:nangles) {
 		
-			res <- DAPA(plant, azimuth=AZ[i], altitude=ALT[i], exact=exactbool, npside=npside)
+			res <- DAPA(plant, azimuth=AZ[i], altitude=ALT[i], exact=FALSE, npside=npside)
 			DAs[i] <- res$DA
 			PAs[i] <- res$PA
 			Hs[i] <- res$H

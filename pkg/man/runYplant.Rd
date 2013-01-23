@@ -29,7 +29,7 @@ for programming purposes (and more advanced custom simulations).
 \method{runYplant}{stand3d}(x,...)
 }
 \arguments{
-  \item{plant}{An object of class 'plant3d', see \code{\link{constructplant}}}
+  \item{x}{An object of class 'plant3d', see \code{\link{constructplant}}}
   \item{phy}{An object of class 'ypphy', see \code{\link{setPhy}}}
   \item{hemi}{An object of class 'yphemi', see \code{\link{setHemi}}}
   \item{reldiff}{Optional. A vector of relative diffuse absorption, same length as number of leaves. See Details.}

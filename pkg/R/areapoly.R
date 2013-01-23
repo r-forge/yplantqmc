@@ -1,4 +1,3 @@
-# stripped from gpclib (see Rgpc.R)
 areapoly <- function(x.mat){
 	x.segmat <- cbind(x.mat, rbind(x.mat[2:nrow(x.mat), ],
                                                  x.mat[1, ]));

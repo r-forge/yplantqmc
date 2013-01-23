@@ -1,11 +1,11 @@
 Package: YplantQMC
 Type: Package
 Title: Plant architectural analysis with Yplant and QuasiMC.
-Version: 0.3-4
-Date: 2013-01-15
+Version: 0.4
+Date: 2013-01-23
 Author: Remko Duursma. QuasiMC by Mik Cieslak. Uses code by Robert Pearcy (Yplant) and Belinda Medlyn (MAESTRA).
-Depends: rgl,geometry,gpclib,LeafAngle
-Suggests: maps,gplots
+Depends: rgl,geometry,LeafAngle,devtools
+Suggests: maps,gplots,ypaddon
 Maintainer: Remko Duursma <remkoduursma@gmail.com>
 Description: An R implementation of Yplant, combined with the QuasiMC raytracer. Calculate radiation absorption, transmission and scattering, photosynthesis and transpiration of virtual 3D plants.
 License: file LICENCE

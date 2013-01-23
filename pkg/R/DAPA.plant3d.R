@@ -1,4 +1,4 @@
-DAPA.plant3d <- function (object, azimuth=NA, altitude=NA, exact=TRUE, npside=50, 
+DAPA.plant3d <- function (object, azimuth=NA, altitude=NA, exact=FALSE, npside=50, 
                       returnpolygons=FALSE, quiet=FALSE, progressbar=!quiet,
 					  ...) 
 {
@@ -7,6 +7,10 @@ DAPA.plant3d <- function (object, azimuth=NA, altitude=NA, exact=TRUE, npside=50
 	AZ <- azimuth * 180/pi
 	ALT <- altitude * 180/pi
 	
+  
+  if(exact)
+    stop("Method 'exact' temporarily unavailable. Contact package maintainer.")
+  
     if (!inherits(plant, "plant3d")) 
         stop("Need object of class 'plant3d'\n")
 
@@ -29,14 +33,14 @@ DAPA.plant3d <- function (object, azimuth=NA, altitude=NA, exact=TRUE, npside=50
 	PA <- sum(sapply(P, areapoly))
 	#PA <- sum(newplant$acosangle * plant$leafdata$area)
 
-	if (exact) {
-		allunion <- fastunion(P)
-		DA <- area.poly(allunion)
-	}
-	if (!exact) {
+# 	if (exact) {
+# 		allunion <- fastunion(P)
+# 		DA <- area.poly(allunion)
+# 	}
+# 	if (!exact) {
 		ray <- gridtrace(newplant, npside = npside, returnall=FALSE)
 		DA <- ray$nintersect * ray$pointarea
-	}
+# 	}
 	
 	l <- list(DA = DA, PA = PA, azimuth = AZ, altitude = ALT, 
 			exact = exact, LA = LA, H=silho)

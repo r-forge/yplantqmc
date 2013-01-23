@@ -17,6 +17,18 @@ plot.plant3d <- function(x,
 					  ...
 					  ){  
 
+  
+  if(leaffill & !noleaves){
+    
+    r <- suppressWarnings(require(ypaddon, quietly=TRUE))
+    if(!r){
+      ypaddonMessage()
+      leaffill <- FALSE
+    }
+      
+    
+  }
+  
 	plant <- x
   
   if(!all(shiftxyz==0)){
@@ -104,55 +116,17 @@ plot.plant3d <- function(x,
 		segments3d(LM, col="black")
 	}
 	
-	# Fill in leaves.
-	r <- require(gpclib)
-	if(!r & leaffill){
-		leaffill <- FALSE
-		warning("Could not fill leaves. Install package 'gpclib'.")
-	}
-	
+
 	if(leaffill & !noleaves){
-		sms <- list()
-		tri <- list()
-		
-		fillLeaves <- function(indices, leafcol){
-			for(i in indices){
-				
-				m <- plant$leaves[[i]]$XYZ
-				x <- m[,1]
-				y <- m[,2]
-				z <- m[,3]
-				
-				triangles <- triangulate(as(cbind(x,y), "gpc.poly"))
-				options(warn=-1)  # if leaf hanging straight down, lm will give warning.
-				sms[[i]] <- lm(z ~ x + y)
-				# Leaf is hanging straight down; can't predict z values from x,y values,
-				# instead predict y from x an z values.
-				if(is.na(coef(sms[[i]])[[3]])){
-					triangles <- triangulate(as(cbind(x,z), "gpc.poly"))
-					sms[[i]] <- lm(y ~ x + z)	
-					yfit <- predict(sms[[i]], newdata=data.frame(x=triangles[,1], z=triangles[,2]))
-					material3d(col=leafcol, shininesss=0, lit=TRUE, specular=leafcol)
-					tri[[i]] <- cbind(triangles[,1], yfit, triangles[,2])
-				# Normal situation (z fit from x,y).
-				} else {
-					zfit <- predict(sms[[i]], newdata=data.frame(x=triangles[,1], y=triangles[,2]))
-					material3d(col=leafcol, shininesss=0, lit=TRUE, specular=leafcol)
-					tri[[i]] <- cbind(triangles, zfit)
-				}
-			}
-			tri<- do.call("rbind", tri)
-			triangles3d(tri, col=leafcol)
-		}
-		
+    
 		if(is.null(markleaves))
-			fillLeaves(1:plant$nleaves, leafcolor)
+			fillLeaves(plant,1:plant$nleaves, leafcolor)
 		else {
 			if(max(markleaves) > plant$nleaves)
 				stop("Max. markleaves > number of leaves on plant.")
 			otherleaves <- setdiff(1:plant$nleaves, markleaves)
-			fillLeaves(otherleaves, leafcolor)
-			fillLeaves(markleaves, markcolor)
+			fillLeaves(plant,otherleaves, leafcolor)
+			fillLeaves(plant,markleaves, markcolor)
 		}
 		
 	}
@@ -160,3 +134,6 @@ plot.plant3d <- function(x,
 options(warn=0)
   return(invisible(LM))
 }
+
+
+

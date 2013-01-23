@@ -12,7 +12,7 @@ Silhouette <- function(obj, azimuth=NA, altitude=NA){
 	P <- do.call("rbind", lapply(newplant$leaves, function(x)x$XYZ[,1:2]))
 	ch <- chull(P)
 	chp <- c(ch, ch[1])
-	H <- area.poly(as(P[chp,], "gpc.poly"))
+	H <- areapoly(P[chp,])
 	
 	l <- list()
 	l$H <- H
