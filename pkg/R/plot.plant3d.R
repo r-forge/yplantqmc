@@ -120,13 +120,13 @@ plot.plant3d <- function(x,
 	if(leaffill & !noleaves){
     
 		if(is.null(markleaves))
-			fillLeaves(plant,1:plant$nleaves, leafcolor)
+			ypaddon::fillLeaves(plant,1:plant$nleaves, leafcolor)
 		else {
 			if(max(markleaves) > plant$nleaves)
 				stop("Max. markleaves > number of leaves on plant.")
 			otherleaves <- setdiff(1:plant$nleaves, markleaves)
-			fillLeaves(plant,otherleaves, leafcolor)
-			fillLeaves(plant,markleaves, markcolor)
+			ypaddon::fillLeaves(plant,otherleaves, leafcolor)
+			ypaddon::fillLeaves(plant,markleaves, markcolor)
 		}
 		
 	}
