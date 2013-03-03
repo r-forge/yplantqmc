@@ -4,7 +4,7 @@
 Make a stand of virtual plants
 }
 \description{
-empty
+Make a stand of plants, for use in \code{runYplant}, and for visualization. See the example below to get started. Support for \code{runYplant} is somewhat experimental, and \code{YplantDay} is not supported yet. Proceed at your own risk.
 }
 \usage{
 makeStand(plants = list(), xyz = data.frame(x = 0, y = 0, z = 0), plotbox = NULL)
