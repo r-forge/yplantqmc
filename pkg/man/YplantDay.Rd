@@ -95,9 +95,10 @@ reldif <- mysim$outdata$reldiff
 
 }
 
-% \references{
-% %% ~put references to the literature/web site here ~
-% }
+\references{
+See \url{http://www.remkoduursma/yplantqmc}
+}
+
 \author{
 Remko Duursma
 }

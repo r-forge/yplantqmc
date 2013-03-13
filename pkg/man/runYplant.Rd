@@ -84,6 +84,10 @@ This returns a dataframe with one row per leaf. The variables included are
 
 }
 
+\references{
+See \url{http://www.remkoduursma/yplantqmc}
+}
+
 \author{
 Remko Duursma
 }

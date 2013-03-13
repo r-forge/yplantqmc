@@ -78,6 +78,8 @@ Duursma, R.A., D.S. Falster, F. Valladares, F.J. Sterck, R.W. Pearcy, C.H. Lusk,
 N.C. Houter, B.J. Atwell, N. Kelly, J.W.G. Kelly, M. Liberloo, D.T. Tissue, B.E. Medlyn and D.S. Ellsworth. 2012. 
 Light interception efficiency explained by two simple variables: a test using a diversity of small- to medium-sized 
 woody plants. New Phytologist. 193:397-408.
+
+See also \url{http://www.remkoduursma/yplantqmc}
 }
 
 \seealso{

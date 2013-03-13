@@ -18,12 +18,14 @@ This function can also be used to update an existing installation.
 installQuasiMC(proxy = FALSE)
 }
 \arguments{
-  \item{proxy}{Use TRUE if connecting through a proxy.}
+  \item{proxy}{Use TRUE if connecting through a proxy. This invokes \code{\link{setInternet2}}}
 }
 
 \references{
 Cieslak, M., C. Lemieux, J. Hanan and P. Prusinkiewicz. 2008. Quasi-Monte Carlo simulation of 
 the light environment of plants. Functional Plant Biology. 35:837-849.
+
+See also \url{http://www.remkoduursma/yplantqmc}
 }
 \author{
 QuasiMC by Mik Cieslak, R installation code by Remko Duursma. 

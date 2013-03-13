@@ -26,7 +26,6 @@ plot.plant3d <- function(x,
       leaffill <- FALSE
     }
       
-    
   }
   
 	plant <- x
